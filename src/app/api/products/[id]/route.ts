@@ -2,7 +2,7 @@ import { connectMongoDB } from '@/lib/mongodb';
 import Product from '@/models/product';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function PUT (request: NextRequest, { params }) {
+export async function PUT (request: NextRequest, { params }: any) {
   const { id } = params;
   const productData = await request.json();  
   await connectMongoDB();
