@@ -6,12 +6,7 @@ import Link from 'next/link';
 import React, { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-type Props = {
-  cart: CartItem[],
-  setCart: any,
-}
-
-export const CartProducts: FC<Props> = ({ cart, setCart }) => {
+export const CartProducts = ({ cart, setCart }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [orderPrice, setOrderPrice] = useState(0);
   const shippingOptions = [
@@ -26,7 +21,7 @@ export const CartProducts: FC<Props> = ({ cart, setCart }) => {
   
   useEffect(() => {
     setTotalPrice(() => {
-      return cart.map(cartItem => +cartItem.item.price * cartItem.qty).reduce((acc, curr) => {
+      return cart.map((cartItem) => +cartItem?.item?.price * cartItem.qty).reduce((acc, curr) => {
         return acc + curr;
       }, 0)
     });
@@ -40,15 +35,15 @@ export const CartProducts: FC<Props> = ({ cart, setCart }) => {
     setOrderPrice(totalPrice + shipping.price);
   }, [shipping.name, shipping.price, totalPrice])
 
-  const handleShippingChange = (event: React.ChangeEvent) => {
+  const handleShippingChange = (event) => {
     return setOrderPrice(totalPrice + +event.target.value)
   }
 
-  const handleDeleteFromCart = (productId: string) => {
+  const handleDeleteFromCart = (productId) => {
     setCart(cart.filter(cartItem => cartItem.item?._id !== productId))
   }
 
-  const handleQtyChange = (event?: React.ChangeEvent, productId: string) => {
+  const handleQtyChange = (event, productId) => {
     setCart(
       cart.map(cartItem =>
         cartItem.item._id === productId
@@ -58,7 +53,7 @@ export const CartProducts: FC<Props> = ({ cart, setCart }) => {
     );
   }
 
-  const handleAddQty = (productId: string) => {
+  const handleAddQty = (productId) => {
     setCart(
       cart.map(cartItem =>
         cartItem.item._id === productId && cartItem.qty !== 99
@@ -68,7 +63,7 @@ export const CartProducts: FC<Props> = ({ cart, setCart }) => {
     );
   }
   
-  const handleSubstractQty = (productId: string) => {
+  const handleSubstractQty = (productId) => {
     setCart(
       cart.map(cartItem =>
         cartItem.item._id === productId && cartItem.qty !== 1
@@ -118,7 +113,7 @@ export const CartProducts: FC<Props> = ({ cart, setCart }) => {
             <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5">Price</h3>
             <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5">Total</h3>
           </div>
-          {cart.map((cartItem: CartItem) => (
+          {cart.map((cartItem) => (
             <div key={cartItem.item?._id} className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
               <div className="flex w-2/5">
                 <div className="w-20">

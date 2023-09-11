@@ -33,14 +33,14 @@ export default function ProductList() {
 
   const { cart, setCart } = useCartContext();
 
-  const handleDelete = (productId: string) => {
+  const handleDelete = (productId) => {
     mutate(productId);
     setProducts(prevProducts => prevProducts.filter(product => product._id !== productId))
   }
 
-  const handleAddToCart = (productId: string) => {
+  const handleAddToCart = (productId) => {
     const productToAdd = products.find(
-      (product: Product) => product._id === productId
+      (product) => product._id === productId
     );
 
     if(productToAdd) {

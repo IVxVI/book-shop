@@ -1,21 +1,14 @@
-import { CartItem } from '@/types/CartItem'
-import { Order } from '@/types/Order';
 import { placeOrder } from '@/utils/axiosApi';
 import React, { FC, useState, useEffect } from 'react'
 
-type Props = {
-  order: CartItem[],
-  setOrder: any,
-}
-
-export const Checkout: FC<Props> = ({ order, setOrder }) => {
+export const Checkout = ({ order, setOrder }) => {
   const shippingOptions = [
     {name: 'Nova post', price: 120.00, terms: '1-3 working days'},
     {name: 'Ukrpost', price: 100.00, terms: '3-5 working days'},
     {name: 'Courier', price: 220.00, terms: '1-2 working days'},
   ];
 
-  const [orderData, setOrderData] = useState<Order>({
+  const [orderData, setOrderData] = useState({
     resolved: false,
     customer: '',
     phone: '',
@@ -33,7 +26,7 @@ export const Checkout: FC<Props> = ({ order, setOrder }) => {
 
   const selectedShippingOption = shippingOptions.find(option => option.name === orderData.shipping);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChange = (event) => {
     if(event.target.name === 'street' || event.target.name === 'city' || event.target.name === 'ZIP') {
       const {name, value} = event.target;
       const addressField = name;
@@ -51,7 +44,7 @@ export const Checkout: FC<Props> = ({ order, setOrder }) => {
     }
   }
 
-  const handleDelete = (productId: string) => {
+  const handleDelete = (productId) => {
     setOrder(order.filter(orderItem => orderItem.item?._id !== productId));
     setOrderData({...orderData, products: order.filter(orderItem => orderItem.item?._id !== productId)})
   }
@@ -70,7 +63,7 @@ export const Checkout: FC<Props> = ({ order, setOrder }) => {
     });
   }, [orderData.products, orderData.shipping]);
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     placeOrder(orderData);
   }
