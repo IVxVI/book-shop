@@ -4,16 +4,17 @@ import { useLocalStorage } from "@/utils/UseLocalStorage";
 
 type OrderContextType = {
   order: CartItem[],
-  setOrder?: Dispatch<SetStateAction<CartItem[]>>,
+  setOrder: Dispatch<SetStateAction<CartItem[]>>,
 }
 
 const defaultOrderContext: OrderContextType = {
   order: [],
+  setOrder: () => {}
 };
 
 export const OrderContext = createContext(defaultOrderContext);
 
-export const OrderProvider = ({ children }) => {
+export const OrderProvider = ({ children }: any) => {
   const [order, setOrder] = useLocalStorage('order', []);
 
   return (

@@ -4,7 +4,7 @@ import { useLocalStorage } from "@/utils/UseLocalStorage";
 
 type CartContextType = {
   cart: CartItem[],
-  setCart?: Dispatch<SetStateAction<CartItem[]>>,
+  setCart: Dispatch<SetStateAction<CartItem[]>>,
 }
 
 const defaultCartContext: CartContextType = {
@@ -12,12 +12,12 @@ const defaultCartContext: CartContextType = {
     item: undefined,
     qty: 0
   }],
+  setCart: () => {}
 };
 
 export const CartContext = createContext(defaultCartContext);
 
-export const CartProvider = ({ children }) => {
-  // const [cart, setCart] = useState<CartItem[]>([]);
+export const CartProvider = ({ children }: any) => {
   const [cart, setCart] = useLocalStorage('cart', []);
 
   return (

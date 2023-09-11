@@ -26,7 +26,7 @@ export const CartProducts: FC<Props> = ({ cart, setCart }) => {
   
   useEffect(() => {
     setTotalPrice(() => {
-      return cart.map(cartItem => +cartItem.item?.price * cartItem.qty).reduce((acc, curr) => {
+      return cart.map(cartItem => +cartItem.item.price * cartItem.qty).reduce((acc, curr) => {
         return acc + curr;
       }, 0)
     });
@@ -41,7 +41,7 @@ export const CartProducts: FC<Props> = ({ cart, setCart }) => {
   }, [shipping.name, shipping.price, totalPrice])
 
   const handleShippingChange = (event: React.ChangeEvent) => {
-    return setOrderPrice(totalPrice + +event?.target.value)
+    return setOrderPrice(totalPrice + +event.target.value)
   }
 
   const handleDeleteFromCart = (productId: string) => {
@@ -127,22 +127,22 @@ export const CartProducts: FC<Props> = ({ cart, setCart }) => {
                 <div className="flex flex-col justify-between ml-4 flex-grow">
                   <span className="font-bold text-sm">{cartItem.item?.title}</span>
                   <span className="text-red-500 text-xs">Book</span>
-                  <button onClick={() => handleDeleteFromCart(cartItem.item?._id)} className="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</button>
+                  <button onClick={() => handleDeleteFromCart(cartItem.item._id)} className="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</button>
                 </div>
               </div>
               <div className="flex justify-center w-1/5">
-                <svg onClick={() => handleSubstractQty(cartItem.item?._id)} className="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
+                <svg onClick={() => handleSubstractQty(cartItem.item._id)} className="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
                   <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/>
                 </svg>
 
-                <input onChange={(event) => handleQtyChange(event, cartItem.item?._id)} className="mx-2 border text-center w-8" type="text" value={cartItem.qty} />
+                <input onChange={(event) => handleQtyChange(event, cartItem.item._id)} className="mx-2 border text-center w-8" type="text" value={cartItem.qty} />
 
-                <svg onClick={() => handleAddQty(cartItem.item?._id)} className="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
+                <svg onClick={() => handleAddQty(cartItem.item._id)} className="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
                   <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/>
                 </svg>
               </div>
-              <span className="text-center w-1/5 font-semibold text-sm">$ {cartItem.item?.price}</span>
-              <span className="text-center w-1/5 font-semibold text-sm">$ {cartItem.item?.price * cartItem.qty}</span>
+              <span className="text-center w-1/5 font-semibold text-sm">$ {cartItem.item.price}</span>
+              <span className="text-center w-1/5 font-semibold text-sm">$ {cartItem.item.price * cartItem.qty}</span>
             </div>
           ))}
 
