@@ -4,7 +4,7 @@ import { Product } from '../types/Product';
 import { Order } from "@/types/Order";
 
 const productsApi = axios.create({
-  baseURL: 'http://localhost:3000/api',
+  baseURL: 'https://book-shop-eight-virid.vercel.app/api',
 })
 
 export const fetchProducts = async () => {
