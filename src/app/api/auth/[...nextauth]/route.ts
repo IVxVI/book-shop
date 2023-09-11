@@ -1,15 +1,16 @@
 import NextAuth from "next-auth/next";
 import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
-import CredentialsProvider from 'next-auth/providers/credentials';
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from 'bcrypt';
+import { NextAuthOptions } from "next-auth";
+import CredentialsProvider from 'next-auth/providers/credentials';
 //random secret code generation: openssl rand -base64 32 in terminal
 
 const prisma = new PrismaClient();
 
-export const authOptions = {
+const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     GitHubProvider({

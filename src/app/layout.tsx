@@ -17,7 +17,7 @@ import classNames from 'classnames'
 import User from '../components/User'
 import './globals.css'
 import { CartProvider } from '@/context/CartContext'
-import { OrderProvider, useOrderContext } from '@/context/OrderContext'
+import { OrderProvider } from '@/context/OrderContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
