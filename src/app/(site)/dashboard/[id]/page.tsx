@@ -11,10 +11,10 @@ type Props = {
 const EditProductPage: FC<Props> = async ({ params }) => {
   const { id } = params;
 
-  const { data } = await fetchProduct(id);
+  const data = await fetchProduct(id);
   
   return (
-    data && <EditProductForm product={data.product}/>
+    data && <EditProductForm product={data.data.product}/>
   )
 }
 
