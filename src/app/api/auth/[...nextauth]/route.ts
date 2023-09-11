@@ -10,10 +10,10 @@ import type { Adapter } from 'next-auth/adapters';
 
 //random secret code generation: openssl rand -base64 32 in terminal
 
-const prismaClient = new PrismaClient();
+const prisma = new PrismaClient();
 
 const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prismaClient) as Adapter,
+  adapter: PrismaAdapter(prisma) as Adapter,
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_ID as string,
@@ -39,7 +39,7 @@ const authOptions: NextAuthOptions = {
           throw new Error('Please enter an email and password')
         }
 
-        const user = await prismaClient.user.findUnique({
+        const user = await prisma.user.findUnique({
           where: {
             email: credentials.email
           }
