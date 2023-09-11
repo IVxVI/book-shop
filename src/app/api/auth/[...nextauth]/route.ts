@@ -6,12 +6,14 @@ import { PrismaClient } from "@prisma/client";
 import bcrypt from 'bcrypt';
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from 'next-auth/providers/credentials';
+import type { Adapter } from 'next-auth/adapters';
+
 //random secret code generation: openssl rand -base64 32 in terminal
 
-const prisma = new PrismaClient();
+const prismaClient = new PrismaClient();
 
 const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter(prismaClient) as Adapter,
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_ID as string,
@@ -33,11 +35,11 @@ const authOptions: NextAuthOptions = {
       },
 
       async authorize(credentials) {
-        if(!credentials.email || !credentials.password) {
+        if(!credentials?.email || !credentials.password) {
           throw new Error('Please enter an email and password')
         }
 
-        const user = await prisma.user.findUnique({
+        const user = await prismaClient.user.findUnique({
           where: {
             email: credentials.email
           }
@@ -61,7 +63,12 @@ const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt',
   },
-  debugger: process.env.NODE_ENV === 'development'
+
+  pages: {
+    signIn: '/login'
+  },
+
+  // debugger: process.env.NODE_ENV === 'development'
 }
 
 const handler = NextAuth(authOptions);
