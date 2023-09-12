@@ -122,7 +122,7 @@ export const CartProducts = ({ cart, setCart }) => {
                 <div className="flex flex-col justify-between ml-4 flex-grow">
                   <span className="font-bold text-sm">{cartItem.item?.title}</span>
                   <span className="text-red-500 text-xs">Book</span>
-                  <button onClick={() => handleDeleteFromCart(cartItem.item._id)} className="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</button>
+                  <button onClick={() => handleDeleteFromCart(cartItem.item._id)} className="font-semibold hover:text-red-600 text-gray-500 text-xs">Remove</button>
                 </div>
               </div>
               <div className="flex justify-center w-1/5">
@@ -141,8 +141,10 @@ export const CartProducts = ({ cart, setCart }) => {
             </div>
           ))}
 
-          <Link href="/products" className="flex font-semibold text-indigo-600 text-sm mt-10">
-            <svg className="fill-current mr-2 text-indigo-600 w-4" viewBox="0 0 448 512"><path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z"/></svg>
+          <Link href="/products" className="flex font-semibold text-gray-600 text-sm mt-10 hover:text-emerald-600">
+            <svg className="fill-current mr-2 text-gray-600 w-4 hover:text-emerald-600" viewBox="0 0 448 512">
+              <path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z"/>
+            </svg>
             Continue Shopping
           </Link>
         </div>
@@ -171,7 +173,7 @@ export const CartProducts = ({ cart, setCart }) => {
               <span>Total cost</span>
               <span>$ {orderPrice}</span>
             </div>
-            <button onClick={handleProceedCheckout} className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
+            <button onClick={handleProceedCheckout} className="inline-block rounded-md border border-transparent bg-gray-900 px-8 py-3 text-center font-medium text-white hover:bg-gray-500 w-full">Checkout</button>
           </div>
         </div>
       </div>

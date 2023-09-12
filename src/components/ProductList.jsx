@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { deleteProduct, fetchProducts } from '../utils/axiosApi';
 import { ProductContext } from '@/context/ProductContext';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -6,8 +6,7 @@ import { ShoppingBagIcon, TrashIcon, PencilIcon, EllipsisHorizontalCircleIcon } 
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 import { usePathname } from "next/navigation";
-import { CartContext, useCartContext } from '@/context/CartContext';
-import { Product } from '@/types/Product';
+import { useCartContext } from '@/context/CartContext';
 import { addToCart } from '@/utils/cartActions';
 
 export default function ProductList() {

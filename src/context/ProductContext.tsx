@@ -1,4 +1,6 @@
-import { Dispatch, SetStateAction, createContext, useState } from "react";
+'use client'
+  
+import { Dispatch, SetStateAction, createContext, useContext, useState } from "react";
 import { Product } from "../types/Product";
 
 const defaultProductContext: ProductContextType = {
@@ -22,3 +24,7 @@ export const ProductProvider = ({ children }: any) => {
     </ProductContext.Provider>
   );
 };
+
+export function useProductsContext() {
+  return useContext(ProductContext);
+}
