@@ -18,6 +18,7 @@ import User from '../components/User'
 import './globals.css'
 import { CartProvider } from '@/context/CartContext'
 import { OrderProvider } from '@/context/OrderContext'
+import Header from '@/components/Header'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -47,7 +48,7 @@ export default function RootLayout({
         <Provider>
           <ToasterContext />
           <main className="min-h-full">
-            <Disclosure as="nav" className="bg-gray-800">
+            {/* <Disclosure as="nav" className="bg-gray-800">
               {({ open }) => (
                 <>
                   <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -182,7 +183,7 @@ export default function RootLayout({
                   </Disclosure.Panel>
                 </>
               )}
-            </Disclosure>
+            </Disclosure> */}
 
             {/* <header className="bg-white shadow">
               <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -192,7 +193,8 @@ export default function RootLayout({
                 </h1>
               </div>
             </header> */}
-
+            
+            <Header />
             <article className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
               <ProductProvider>
                 <CartProvider>
@@ -204,6 +206,7 @@ export default function RootLayout({
                 </CartProvider>
               </ProductProvider>
             </article>
+          
           </main>
         </Provider>  
       </body>
