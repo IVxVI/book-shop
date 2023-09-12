@@ -8,7 +8,6 @@ export async function GET (request: NextRequest, { params }: any) {
   const product = await Product.findOne({ _id: id });
 
   return new Response(JSON.stringify(product), { status: 200 });
-  // return NextResponse.json({ product }, { status: 200 });
 }
 
 export async function PUT (request: Request, { params }: any) {
@@ -24,7 +23,6 @@ export async function PUT (request: Request, { params }: any) {
       imgUrl: productData.imgUrl,
     });
 
-    // return NextResponse.json({ message: 'Product updated' }, { status: 200 });
     return new Response(JSON.stringify(editedProduct), { status: 200 });
   } catch (error) {
     console.error(error);

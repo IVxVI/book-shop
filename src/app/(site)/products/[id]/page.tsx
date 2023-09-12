@@ -6,7 +6,7 @@ import { fetchProduct } from '@/utils/axiosApi';
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react'
 
-export default function DetailsPage({ params }) {
+export default function DetailsPage ({ params }: any) {
   const [product, setProduct] = useState<Product>({
     title: '',
     price: '',

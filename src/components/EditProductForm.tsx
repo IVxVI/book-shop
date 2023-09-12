@@ -7,7 +7,7 @@ import React, { useState } from 'react'
 import toast from 'react-hot-toast';
 import Loader from './Loader';
 
-export const EditProductForm = ({ product }) => {
+export const EditProductForm = ({ product }: any) => {
   const router = useRouter();
   const [productData, setProductData] = useState({
     title: '',

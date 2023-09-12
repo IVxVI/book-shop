@@ -7,18 +7,7 @@ import { fetchProduct } from '@/utils/axiosApi';
 import { useQuery } from '@tanstack/react-query';
 import { FC, useState } from 'react';
 
-type Props = {
-  params: any;
-}
-
-const EditProductPage: FC<Props> = ({ params }) => {
-  // const { id } = params;
-
-  // const data = await fetchProduct(id);
-  
-  // return (
-  //   data && <EditProductForm product={data.data.product}/>
-  // )
+const EditProductPage = ({ params }: any) => {
   const [product, setProduct] = useState({
     title: '',
     price: '',
