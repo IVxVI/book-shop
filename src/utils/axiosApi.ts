@@ -4,12 +4,13 @@ import { Product } from '../types/Product';
 import { Order } from "@/types/Order";
 
 const productsApi = axios.create({
-  baseURL: 'https://book-shop-eight-virid.vercel.app/api',
+  // baseURL: 'https://book-shop-eight-virid.vercel.app/api',
+  baseURL: process.env.API_URL,
 })
 
 export const fetchProducts = async () => {
   try {
-    const { data } = await productsApi.get('/products');
+    const { data } = await productsApi.get('api/products');
     return data;
   } catch (error) {
     console.error(error);
@@ -19,7 +20,7 @@ export const fetchProducts = async () => {
 
 export const fetchProduct = async (id: string | undefined) => {
   try {
-    const response = await productsApi.get(`/products/${id}`);
+    const response = await productsApi.get(`api/products/${id}`);
     return response;
   } catch (error) {
     console.error(error);
@@ -29,7 +30,7 @@ export const fetchProduct = async (id: string | undefined) => {
 
 export const addProduct = async (productData: Product) => {
   try {
-    const response = await productsApi.post('/products', productData);
+    const response = await productsApi.post('api/products', productData);
     return response;
   } catch (error) {
     console.error(error);
@@ -39,7 +40,7 @@ export const addProduct = async (productData: Product) => {
 
 export const editProduct = async (productData: Product) => {
   try {
-    const response = await productsApi.put(`/products/${productData._id}`, productData);
+    const response = await productsApi.put(`api/products/${productData._id}`, productData);
     return response;
   } catch (error) {
     console.error(error);
@@ -49,7 +50,7 @@ export const editProduct = async (productData: Product) => {
 
 export const deleteProduct = async (productId: string) => {
   try {
-    const response = await productsApi.delete(`/products?id=${productId}`);
+    const response = await productsApi.delete(`api/products?id=${productId}`);
     return response;
   } catch (error) {
     console.error(error);
@@ -59,7 +60,7 @@ export const deleteProduct = async (productId: string) => {
 
 export const placeOrder = async (orderData: Order) => {
   try {
-    const response = await productsApi.post('/orders', orderData);
+    const response = await productsApi.post('api/orders', orderData);
     if(response.status === 200) {
       toast.success('Order placed successfully!');
     }
