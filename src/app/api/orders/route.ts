@@ -17,7 +17,7 @@ export async function POST (request: NextRequest) {
     products 
   } = await request.json();
 
-  await Order.create({
+  const newOrder = await Order.create({
     resolved,
     phone,
     email,
@@ -30,7 +30,7 @@ export async function POST (request: NextRequest) {
   });
 
   // return NextResponse.json({message: 'Order placed'}, { status: 200 });
-  return new Response(JSON.stringify(Order), {status: 200});
+  return new Response(JSON.stringify(newOrder), {status: 200});
 }
 
 export async function GET () {

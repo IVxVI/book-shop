@@ -1,4 +1,4 @@
-import { NextResponse, NextRequest } from 'next/server';
+import { NextRequest } from 'next/server';
 import { connectMongoDB } from "@/lib/mongodb";
 import Product from "@/models/product";
 
@@ -8,7 +8,6 @@ export async function POST (request: NextRequest) {
 
   const newProduct = await Product.create({title, price, description, imgUrl});
   return new Response(JSON.stringify(newProduct), { status: 201 });
-  // return NextResponse.json({message: 'Product created'}, { status: 201 });
 }
 
 export async function GET () {

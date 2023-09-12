@@ -4,13 +4,10 @@ import { ProductCard } from '@/components/ProductCard'
 import { Product } from '@/types/Product';
 import { fetchProduct } from '@/utils/axiosApi';
 import { useQuery } from '@tanstack/react-query';
-import { usePathname } from 'next/navigation';
 import React, { useState } from 'react'
 
-export default function DetailsPage() {
-  const path = usePathname();
-  const productId = path.split('/')[2];
-  const [product, setProduct] = useState<Product | undefined>({
+export default function DetailsPage({ params }) {
+  const [product, setProduct] = useState<Product>({
     title: '',
     price: '',
     description: '',
@@ -19,9 +16,12 @@ export default function DetailsPage() {
 
   const { data, status, isLoading, error } = useQuery({
     queryKey: ['product'],
-    queryFn: () => fetchProduct(productId),
+    queryFn: () => fetchProduct(params.id as string),
     onSuccess(data) {
-      setProduct(data?.data.product)
+      if(data) {
+        const productData = data.data;
+        setProduct(productData);
+      }
     },
   });
   
