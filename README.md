@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-[DEMO](book-shop-eight-virid.vercel.app)
+[DEMO](https://book-shop-ivxvi.vercel.app/)
 
 ## Getting Started
 
