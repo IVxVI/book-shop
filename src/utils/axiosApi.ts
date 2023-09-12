@@ -4,7 +4,6 @@ import { Product } from '../types/Product';
 import { Order } from "@/types/Order";
 
 const productsApi = axios.create({
-  // baseURL: 'https://book-shop-eight-virid.vercel.app/api',
   baseURL: process.env.API_URL,
 })
 
