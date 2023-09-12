@@ -29,12 +29,13 @@ export async function POST (request: NextRequest) {
     products
   });
 
-  return NextResponse.json({message: 'Order placed'}, { status: 200 });
+  // return NextResponse.json({message: 'Order placed'}, { status: 200 });
+  return new Response(JSON.stringify(Order), {status: 200});
 }
 
 export async function GET () {
   await connectMongoDB();
   const allOrders = await Order.find();
     
-  return NextResponse.json(allOrders)
+  return new Response(JSON.stringify(allOrders), {status: 200});
 }

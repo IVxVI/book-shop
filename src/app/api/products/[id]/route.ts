@@ -8,17 +8,18 @@ export async function PUT (request: NextRequest, { params }: any) {
   await connectMongoDB();
 
   try {
-    await Product.findByIdAndUpdate(id, {
+    const editedProduct = await Product.findByIdAndUpdate(id, {
       title: productData.title,
       price: productData.price,
       description: productData.description,
       imgUrl: productData.imgUrl,
     });
 
-    return NextResponse.json({ message: 'Product updated' }, { status: 200 });
+    // return NextResponse.json({ message: 'Product updated' }, { status: 200 });
+    return new Response(JSON.stringify(editedProduct), { status: 200 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: 'Failed to update product' }, { status: 500 });
+    return new Response(null, { status: 500 });
   }
 }
 

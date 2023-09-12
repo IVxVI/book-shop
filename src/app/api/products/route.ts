@@ -6,21 +6,22 @@ export async function POST (request: NextRequest) {
   await connectMongoDB();
   const {title, price, description, imgUrl} = await request.json();
 
-  await Product.create({title, price, description, imgUrl});
-  return NextResponse.json({message: 'Product created'}, { status: 201 });
+  const newProduct = await Product.create({title, price, description, imgUrl});
+  return new Response(JSON.stringify(newProduct), { status: 201 });
+  // return NextResponse.json({message: 'Product created'}, { status: 201 });
 }
 
 export async function GET () {
   await connectMongoDB();
   const allProducts = await Product.find();
     
-  return new Response(JSON.stringify(allProducts))
+  return new Response(JSON.stringify(allProducts), { status: 200 })
 }
 
 export async function DELETE (request: NextRequest) {
   const id = request.nextUrl.searchParams.get('id');
   await connectMongoDB();
-  await Product.findByIdAndDelete(id);
+  const deletedProduct = await Product.findByIdAndDelete(id);
 
-  return NextResponse.json({message: 'Product deleted'}, { status: 201 });
+  return new Response(JSON.stringify(deletedProduct), { status: 201 });
 }
