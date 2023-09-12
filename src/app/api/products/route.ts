@@ -14,7 +14,7 @@ export async function GET () {
   await connectMongoDB();
   const allProducts = await Product.find();
     
-  return NextResponse.json(allProducts)
+  return new Response(JSON.stringify(allProducts))
 }
 
 export async function DELETE (request: NextRequest) {
