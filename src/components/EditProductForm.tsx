@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
 import Loader from './Loader';
-import { Product } from '@/types/Product';
 
 export const EditProductForm = ({ product }) => {
   const router = useRouter();

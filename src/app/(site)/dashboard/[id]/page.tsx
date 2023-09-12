@@ -19,7 +19,7 @@ const EditProductPage: FC<Props> = ({ params }) => {
   // return (
   //   data && <EditProductForm product={data.data.product}/>
   // )
-  const [product, setProduct] = useState<Product>({
+  const [product, setProduct] = useState({
     title: '',
     price: '',
     description: '',
