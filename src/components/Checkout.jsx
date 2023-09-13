@@ -161,17 +161,17 @@ export const Checkout = ({ order, setOrder }) => {
             
             <div className="relative w-full flex-shrink-0 sm:w-7/12">
               <label htmlFor="street"></label>
-              <input required onChange={handleChange} type="text" id="street" name="street" className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Street Address" required />
+              <input required onChange={handleChange} type="text" id="street" name="street" className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Street Address" />
               <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
                 <img className="h-4 w-4 object-contain" src="https://flagpack.xyz/_nuxt/abbc364f96859becf24ebdf7cf00d29d.svg" alt="flag" />
               </div>
             </div>
             
             <label htmlFor="city"></label>
-            <input required onChange={handleChange} type="text" id="city" name="city" className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="City" required />
+            <input required onChange={handleChange} type="text" id="city" name="city" className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="City" />
             
             <label htmlFor="zip"></label>
-            <input required onChange={handleChange} type="text" id="ZIP" name="ZIP" className="flex-shrink-0 rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none sm:w-1/6 focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="ZIP" required />
+            <input required onChange={handleChange} type="text" id="ZIP" name="ZIP" className="flex-shrink-0 rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none sm:w-1/6 focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="ZIP" />
           </div>
 
           <div className="mt-6 border-t border-b py-2">
