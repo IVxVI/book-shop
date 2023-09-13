@@ -1,6 +1,4 @@
-import mongoose, { Schema } from "mongoose";
-import Address from "./address";
-import CartItem from "./cartItem";
+import mongoose, { Schema, models } from "mongoose";
 
 const orderSchema = new Schema({
   resolved: {
@@ -20,7 +18,7 @@ const orderSchema = new Schema({
     required: false,
   },
   address: {
-    type: Address.schema,
+    type: Object,
     required: true,
   },
   shipping: {
@@ -35,12 +33,36 @@ const orderSchema = new Schema({
     type: Number,
     required: true,
   },
-  products: {
-    type: [CartItem.schema],
-    required: true,
-  },
+  products: [{
+    item: {
+      title: {
+        type: String,
+        required: true,
+      },
+      price: {
+        type: Number,
+        required: true,
+      },
+      description: {
+        type: String,
+        required: true,
+      },
+      imgUrl: {
+        type: String,
+        required: true,
+      },
+      _id: {
+        type: String,
+        ref: 'Product'
+      },
+    },
+    qty: {
+      type: Number,
+      required: true,
+    },
+  }],
 });
 
-const Order = mongoose.model("Order", orderSchema);
+const Order = models.Order || mongoose.model("Order", orderSchema);
 
 export default Order;

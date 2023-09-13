@@ -69,3 +69,15 @@ export const placeOrder = async (orderData: Order) => {
     toast.error('Error while placing order!')
   }
 }
+
+export const fetchOrders = async () => {
+  try {
+    const response = await productsApi.get('/api/orders');
+    console.log(response);
+    toast.success('Orders loaded successfully!');
+    return response;
+  } catch (error) {
+    console.error(error);
+    toast.error('Error while loading orders!')
+  }
+}

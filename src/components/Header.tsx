@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { data: session } = useSession();
+
 
   const navigation = [
     { name: 'Home', href: '/' },
@@ -13,6 +16,7 @@ export default function Header() {
     { name: 'Cart', href: '/cart' },
     { name: 'Admin', href: '/dashboard' }
   ]
+
 
   return (
     <header className="relative inset-x-0 top-0 z-50">
@@ -35,23 +39,24 @@ export default function Header() {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link href="/login" className="text-sm font-semibold leading-6 text-gray-900">
-            Log in <span aria-hidden="true">&rarr;</span>
-          </Link>
+          {
+            !session?.user?.name ? (
+              <Link href="/login" className="text-sm font-semibold leading-6 text-gray-900">
+                <span aria-hidden="true">&rarr;</span> Log in 
+              </Link>
+            ) : (
+              <button onClick={() => signOut()} className="text-sm font-semibold leading-6 text-gray-900">
+                Logout <span aria-hidden="true">&rarr;</span>
+              </button>
+            )
+          }
+          
         </div>
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-50" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="/" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
-              />
-            </a>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -75,12 +80,20 @@ export default function Header() {
                 ))}
               </div>
               <div className="py-6">
-                <Link
-                  href="/login"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Log in
-                </Link>
+                {
+                  session?.user?.name ? (
+                    <Link
+                      href="/login"
+                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    >
+                      Log in
+                    </Link>
+                  ) : (
+                    <button onClick={() => signOut()} className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                      Logout
+                    </button>
+                  )
+                }
               </div>
             </div>
           </div>

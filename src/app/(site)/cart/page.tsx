@@ -1,10 +1,10 @@
 'use client'
 
 import React from 'react'
-import { CartProducts } from '@/components/CartProducts'
 import { useCartContext } from '@/context/CartContext';
-import Link from 'next/link';
+import { CartView } from '@/components/CartView';
 import { useOrderContext } from '@/context/OrderContext';
+import Link from 'next/link';
 
 export default function Cart() {
   const { cart, setCart } = useCartContext();
@@ -54,7 +54,7 @@ export default function Cart() {
           </ul>
         </div>
       </section>
-      <CartProducts cart={cart} setCart={setCart} />
+      <CartView cart={cart} setCart={setCart} />
     </>
   )
 }

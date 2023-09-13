@@ -1,6 +1,13 @@
-import { NextResponse, NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { connectMongoDB } from "@/lib/mongodb";
 import Order from "@/models/order";
+
+export async function GET () {
+  await connectMongoDB();
+  const allOrders = await Order.find({});
+
+  return NextResponse.json(allOrders);
+}
 
 export async function POST (request: NextRequest) {
   await connectMongoDB();
@@ -29,13 +36,5 @@ export async function POST (request: NextRequest) {
     products
   });
 
-  // return NextResponse.json({message: 'Order placed'}, { status: 200 });
   return new Response(JSON.stringify(newOrder), {status: 200});
-}
-
-export async function GET () {
-  await connectMongoDB();
-  const allOrders = await Order.find();
-    
-  return new Response(JSON.stringify(allOrders), {status: 200});
 }

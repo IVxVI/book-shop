@@ -1,13 +1,12 @@
 "use client"
 
+import { useOrderContext } from '@/context/OrderContext';
 import ProductList from '@/components/ProductList';
 import React from 'react';
 import Link from 'next/link';
-import { useOrderContext } from '@/context/OrderContext';
 
 export default function Products() {
   const { order } = useOrderContext();
-  console.log(!order.length);
 
   return (
     <>

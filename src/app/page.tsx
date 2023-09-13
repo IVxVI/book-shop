@@ -10,7 +10,7 @@ export default function Home() {
   const [productsData, setProductsData] = useState([]);
 
   const { data, isError } = useQuery({
-    queryKey: ['products'],
+    queryKey: ['books'],
     queryFn: fetchProducts,
     onSuccess(data) {
       setProductsData(data)
@@ -23,11 +23,10 @@ export default function Home() {
         <div className="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
           <div className="sm:max-w-lg">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Summer styles are finally here
+              Explore Our Book Collection
             </h1>
             <p className="mt-4 text-xl text-gray-500">
-              <span>{`This year, our new summer collection will shelter you from the harsh elements of a world that doesn't care
-              if you live or die.`}</span>
+              <span>Discover a world of knowledge and adventure in our carefully curated collection of books</span>
             </p>
           </div>
           <div>
@@ -39,7 +38,7 @@ export default function Home() {
                 href="/products"
                 className="inline-block rounded-md border border-transparent bg-gray-900 px-8 py-3 text-center font-medium text-white hover:bg-gray-500"
               >
-                Shop Collection
+                Explore Books
               </Link>
             </div>
           </div>

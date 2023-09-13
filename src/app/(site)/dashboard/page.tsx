@@ -17,10 +17,9 @@ export default function Dashboard() {
   }, [session.status, router])
 
   return (
-    <div>
-      <h1>Hello, {session?.data?.user?.name}</h1>
+    <section>
       <AddProductForm />
       <ProductList />
-    </div>
+    </section>
   )
 }
