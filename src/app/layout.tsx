@@ -5,7 +5,6 @@ import { ProductProvider } from '@/context/ProductContext'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { CartProvider } from '@/context/CartContext'
 import { OrderProvider } from '@/context/OrderContext'
-import { Metadata } from 'next'
 import Provider from '@/context/Provider'
 import ToasterContext from '@/context/ToastContext'
 import classNames from 'classnames'
@@ -15,7 +14,7 @@ import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Book-shop',
 }
 
