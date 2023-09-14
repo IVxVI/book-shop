@@ -1,5 +1,3 @@
-
-
 import { editProduct } from '@/utils/axiosApi';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';

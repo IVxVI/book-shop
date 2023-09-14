@@ -14,6 +14,7 @@ export async function POST (request: NextRequest) {
 
   const {
     resolved,
+    createdAt,
     phone,
     email,
     customer,
@@ -26,6 +27,7 @@ export async function POST (request: NextRequest) {
 
   const newOrder = await Order.create({
     resolved,
+    createdAt,
     phone,
     email,
     customer,

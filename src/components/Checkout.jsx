@@ -11,6 +11,7 @@ export const Checkout = ({ order, setOrder }) => {
 
   const [orderData, setOrderData] = useState({
     resolved: false,
+    createdAt: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString(),
     customer: '',
     phone: '',
     email: '',
@@ -94,6 +95,7 @@ export const Checkout = ({ order, setOrder }) => {
 
         <p className="mt-8 text-lg font-medium">Shipping Methods</p>
         <form className="mt-5 grid gap-6">
+          <input type="hidden" name="createdAt" value={orderData.createdAt} />
           <div className="relative">
             {shippingOptions.map(option => (
               <div key={option.name} className="relative">

@@ -1,3 +1,5 @@
+"use client"
+
 import { Dispatch, SetStateAction, createContext, useContext } from "react";
 import { CartItem } from "@/types/CartItem";
 import { useLocalStorage } from "@/utils/UseLocalStorage";

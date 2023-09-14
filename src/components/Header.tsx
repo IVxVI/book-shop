@@ -1,13 +1,17 @@
+'use client'
+
 import React, { useState } from 'react'
+import Link from 'next/link';
+import { usePathname } from 'next/navigation'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useSession, signOut } from 'next-auth/react';
-import Link from 'next/link';
+import classNames from 'classnames';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { data: session } = useSession();
-
+  const pathname = usePathname();
 
   const navigation = [
     { name: 'Home', href: '/' },
@@ -32,11 +36,18 @@ export default function Header() {
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
-          {navigation.map((item) => (
-            <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
-              {item.name}
-            </a>
-          ))}
+          {navigation.map((link) => {
+            const isActive = pathname === link.href;
+
+            return (
+              <Link key={link.name} href={link.href} className={classNames(
+                "text-sm font-semibold leading-6 text-gray-400",
+                {'text-gray-900': isActive}
+              )}>
+                {link.name}
+              </Link>
+            )
+          })}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           {

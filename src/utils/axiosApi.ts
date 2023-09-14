@@ -73,11 +73,19 @@ export const placeOrder = async (orderData: Order) => {
 export const fetchOrders = async () => {
   try {
     const response = await productsApi.get('/api/orders');
-    console.log(response);
-    toast.success('Orders loaded successfully!');
     return response;
   } catch (error) {
     console.error(error);
     toast.error('Error while loading orders!')
+  }
+}
+
+export const fetchOrder = async (id: string) => {
+  try {
+    const response = await productsApi.get(`/api/orders/${id}`);
+    return response;
+  } catch (error) {
+    console.error(error);
+    toast.error('Error while loading this order!')
   }
 }

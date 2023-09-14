@@ -5,6 +5,12 @@ const orderSchema = new Schema({
     type: Boolean,
     required: true,
   },
+
+  createdAt: {
+    type: String,
+    required: true,
+  },
+
   phone: {
     type: String,
     required: true,
