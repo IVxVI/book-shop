@@ -14,10 +14,6 @@ import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata = {
-  title: 'Book-shop',
-}
-
 export default function RootLayout({
   children,
 }: {
