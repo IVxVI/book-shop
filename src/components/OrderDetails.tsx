@@ -25,7 +25,7 @@ export default function OrderDetails(callout: any) {
                 <div className="flex justify-between space-x-8 items-start w-full">
                   <p className="text-base dark:text-white xl:text-lg leading-6">$ {product.item?.price}</p>
                   <p className="text-base dark:text-white xl:text-lg leading-6 text-gray-800">{product.qty}</p>
-                  <p className="text-base dark:text-white xl:text-lg font-semibold leading-6 text-gray-800">$ {+product?.item?.price * product.qty}</p>
+                  <p className="text-base dark:text-white xl:text-lg font-semibold leading-6 text-gray-800">$ {(product?.item ? +product?.item.price : 0) * product.qty}</p>
                 </div>
               </div>
             </div>
