@@ -57,29 +57,32 @@ export default function Orders() {
                   <div className="flex flex-col justify-start items-start dark:bg-gray-800 bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
                     <p className="text-lg md:text-xl dark:text-white font-semibold leading-6 xl:leading-5 text-gray-800">Customer’s Cart</p>
                     
-                    {callout.products.map(product => (
-                      <div key={product.item?._id} className="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full">
-                        <div className="pb-4 md:pb-8 w-full md:w-40">
-                          <img className="w-full hidden md:block" src={product.item?.imgUrl} alt={product.item?.title} />
-                          <img className="w-full md:hidden" src={product.item?.imgUrl} alt={product.item?.title} />
-                        </div>
-                        <div className="border-b border-gray-200 md:flex-row flex-col flex justify-between items-start w-full pb-8 space-y-4 md:space-y-0">
-                          <div className="w-full flex flex-col justify-start items-start space-y-8">
-                            <h3 className="text-xl dark:text-white xl:text-2xl font-semibold leading-6 text-gray-800">{product.item?.title}</h3>
-                            <div className="flex justify-start items-start flex-col space-y-2">
-                              <p className="text-sm dark:text-white leading-none text-gray-800"><span className="dark:text-gray-400 text-gray-300">Author: </span> Anonymous</p>
-                              <p className="text-sm dark:text-white leading-none text-gray-800"><span className="dark:text-gray-400 text-gray-300">Print length: </span> 604</p>
-                              <p className="text-sm dark:text-white leading-none text-gray-800"><span className="dark:text-gray-400 text-gray-300">Language: </span> English</p>
+                    {callout.products.map(product => {
+                      const subTotal = product.item?.price ? +product.item?.price * product.qty : product.qty;
+                      return (
+                        <div key={product.item?._id} className="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full">
+                          <div className="pb-4 md:pb-8 w-full md:w-40">
+                            <img className="w-full hidden md:block" src={product.item?.imgUrl} alt={product.item?.title} />
+                            <img className="w-full md:hidden" src={product.item?.imgUrl} alt={product.item?.title} />
+                          </div>
+                          <div className="border-b border-gray-200 md:flex-row flex-col flex justify-between items-start w-full pb-8 space-y-4 md:space-y-0">
+                            <div className="w-full flex flex-col justify-start items-start space-y-8">
+                              <h3 className="text-xl dark:text-white xl:text-2xl font-semibold leading-6 text-gray-800">{product.item?.title}</h3>
+                              <div className="flex justify-start items-start flex-col space-y-2">
+                                <p className="text-sm dark:text-white leading-none text-gray-800"><span className="dark:text-gray-400 text-gray-300">Author: </span> Anonymous</p>
+                                <p className="text-sm dark:text-white leading-none text-gray-800"><span className="dark:text-gray-400 text-gray-300">Print length: </span> 604</p>
+                                <p className="text-sm dark:text-white leading-none text-gray-800"><span className="dark:text-gray-400 text-gray-300">Language: </span> English</p>
+                              </div>
+                            </div>
+                            <div className="flex justify-between space-x-8 items-start w-full">
+                              <p className="text-base dark:text-white xl:text-lg leading-6">$ {product.item?.price}</p>
+                              <p className="text-base dark:text-white xl:text-lg leading-6 text-gray-800">{product.qty}</p>
+                              <p className="text-base dark:text-white xl:text-lg font-semibold leading-6 text-gray-800">$ {subTotal}</p>
                             </div>
                           </div>
-                          <div className="flex justify-between space-x-8 items-start w-full">
-                            <p className="text-base dark:text-white xl:text-lg leading-6">$ {product.item?.price}</p>
-                            <p className="text-base dark:text-white xl:text-lg leading-6 text-gray-800">{product.qty}</p>
-                            <p className="text-base dark:text-white xl:text-lg font-semibold leading-6 text-gray-800">$ {+product.item?.price * product.qty}</p>
-                          </div>
                         </div>
-                      </div>
-                    ))}
+                      )
+                    })}
                   </div>
                   <div className="flex justify-center md:flex-row flex-col items-stretch w-full space-y-4 md:space-y-0 md:space-x-6 xl:space-x-8">
                     <div className="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 dark:bg-gray-800 space-y-6">
@@ -113,7 +116,7 @@ export default function Orders() {
                         <p className="text-lg font-semibold leading-6 dark:text-white text-gray-800">${callout.shipping?.price}</p>
                       </div>
                       <div className="w-full flex justify-center items-center">
-                        <Link href={callout.shipping.href} className="text-center hover:bg-black dark:bg-white dark:text-gray-800 dark:hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">View Carrier Details</Link>
+                        <Link href={callout.shipping?.href ? callout.shipping.href : ''} className="text-center hover:bg-black dark:bg-white dark:text-gray-800 dark:hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">View Carrier Details</Link>
                       </div>
                     </div>
                   </div>
