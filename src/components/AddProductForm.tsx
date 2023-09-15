@@ -43,7 +43,7 @@ export default function AddProductForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='bg-white p-4' onSubmit={handleSubmit}>
       <div className="grid gap-6 mb-6 md:grid-cols-2">
         <input type="hidden" value={productData._id} name="_id" />
         <div>
@@ -64,7 +64,7 @@ export default function AddProductForm() {
         </div>
       </div>
     
-    <button type="submit" className="text-white bg-gray-700 hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+    <button type="submit" className="text-white bg-gray-700 hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
   </form>
   )
 }

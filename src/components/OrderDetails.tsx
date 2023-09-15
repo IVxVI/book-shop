@@ -8,6 +8,7 @@ export default function OrderDetails(callout: any) {
         <div className="flex flex-col justify-start items-start dark:bg-gray-800 bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
           <p className="text-lg md:text-xl dark:text-white font-semibold leading-6 xl:leading-5 text-gray-800">Customer’s Cart</p>
           {callout.products.map((product: CartItem) => (
+
             <div key={product.item?._id} className="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full">
               <div className="pb-4 md:pb-8 w-full md:w-40">
                 <img className="w-full hidden md:block" src={product.item?.imgUrl} alt={product.item?.title} />
@@ -53,11 +54,11 @@ export default function OrderDetails(callout: any) {
             <h3 className="text-xl dark:text-white font-semibold leading-5 text-gray-800">Shipping</h3>
             <div className="flex justify-between items-start w-full">
               <div className="flex justify-center items-center space-x-4">
-                <div className="w-8 h-8">
+                <div className="w-1/3">
                   <img className="w-full h-full" alt="logo" src="https://i.ibb.co/L8KSdNQ/image-3.png" />
                 </div>
                 <div className="flex flex-col justify-start items-center">
-                  <p className="text-lg leading-6 dark:text-white font-semibold text-gray-800">{callout?.shipping?.name}<br /><span className="font-normal">Delivery with {callout.shipping?.terms}</span></p>
+                  <p className="font-semibold dark:text-gray-300 leading-6 text-gray-600">{callout?.shipping?.name}<br /><span className="font-normal">Delivery with {callout.shipping?.terms}</span></p>
                 </div>
               </div>
               <p className="text-lg font-semibold leading-6 dark:text-white text-gray-800">${callout.shipping?.price}</p>

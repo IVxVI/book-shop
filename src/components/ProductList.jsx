@@ -1,21 +1,23 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { deleteProduct, fetchProducts } from '../utils/axiosApi';
 import { ProductContext } from '@/context/ProductContext';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { ShoppingBagIcon, TrashIcon, PencilIcon, EllipsisHorizontalCircleIcon } from '@heroicons/react/24/solid';
-import Link from 'next/link';
-import toast from 'react-hot-toast';
 import { usePathname } from "next/navigation";
 import { useCartContext } from '@/context/CartContext';
 import { addToCart } from '@/utils/cartActions';
+import Link from 'next/link';
+import toast from 'react-hot-toast';
 
 export default function ProductList() {
+  const [isDisable, setIsDisable] = useState(false);
   const { products, setProducts } = useContext(ProductContext);
   const route = usePathname();
+
   const adminRoute = route.includes('dashboard');
   const queryClient = useQueryClient()
 
-  const { data, isError } = useQuery({
+  const { data, isError, isLoading } = useQuery({
     queryKey: ['products'],
     queryFn: fetchProducts,
     onSuccess(data) {
@@ -23,7 +25,7 @@ export default function ProductList() {
     },
   });
     
-  const {mutate, isLoading} = useMutation(deleteProduct, {
+  const {mutate} = useMutation(deleteProduct, {
     onSuccess: () => {
       queryClient.invalidateQueries(['products']);
       toast.success('Product deleted successfully')
@@ -37,6 +39,13 @@ export default function ProductList() {
     setProducts(prevProducts => prevProducts.filter(product => product._id !== productId))
   }
 
+  const setDisable = () => {
+    setIsDisable(true);
+    setTimeout(() => {
+      setIsDisable(false);
+    }, 2000)
+  }
+
   const handleAddToCart = (productId) => {
     const productToAdd = products.find(
       (product) => product._id === productId
@@ -44,15 +53,17 @@ export default function ProductList() {
 
     if(productToAdd) {
       addToCart(productToAdd, cart, setCart);
+      toast.success('Successfully added to cart');
+      setDisable();
     }
   }
 
   return (
-    <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-6 p-6 md:grid-cols-2 lg:grid-cols-3">
+    <section className="bg-white py-4 mx-auto grid max-w-screen-xl grid-cols-2 gap-12 p-6 md:grid-cols-3 lg:grid-cols-4">
       {products.map(product => (
         <article key={product._id} className="rounded-xl bg-white p-3 shadow-lg hover:shadow-xl flex flex-col justify-between max-w-xs">
-          <div>
-            <a href={`/dashboard/${product._id}`} className="relative flex items-end overflow-hidden rounded-xl">
+          <section>
+            <Link href={adminRoute ? `/dashboard/${product._id}` : `/products/${product._id}`} className="relative flex items-end overflow-hidden rounded-xl">
               <img className='h-full w-full object-cover object-center group-hover:opacity-75' src={`${product.imgUrl}`} alt={product.title} />
               <div className="absolute bottom-3 left-3 inline-flex items-center rounded-lg bg-white p-2 shadow-md">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
@@ -60,13 +71,13 @@ export default function ProductList() {
                 </svg>
                 <span className="text-slate-400 ml-1 text-sm">4.8</span>
               </div>
-            </a>
+            </Link>
 
             <div className="mt-1 p-2 flex-grow">
               <h2 className="text-slate-700">{product.title}</h2>
-              <p className="text-slate-400 mt-1 text-sm">{product.description}</p>
+              <p className="text-slate-400 mt-1 text-sm truncate">{product.description}</p>
             </div>
-          </div>
+          </section>
           <div className="mt-3 flex items-center justify-between">
             <p>
               <span className="text-lg font-bold text-blue-500">$ {product.price}</span>
@@ -78,15 +89,15 @@ export default function ProductList() {
                   <Link href={`dashboard/${product._id}`} className="group inline-flex rounded-xl bg-blue-100 p-2 hover:bg-blue-200">
                     <PencilIcon className="group-hover:text-blue-500 h-4 w-4 text-blue-400" fill="currentColor"/>
                   </Link>
-                  <div onClick={() => handleDelete(product._id)} className="group inline-flex rounded-xl bg-blue-100 p-2 hover:bg-blue-200">
+                  <button disabled={isDisable} onClick={() => handleDelete(product._id)} className="group inline-flex rounded-xl bg-blue-100 p-2 hover:bg-blue-200">
                     <TrashIcon className="group-hover:text-blue-500 h-4 w-4 text-blue-400" fill="currentColor"/>
-                  </div>
+                  </button>
                 </>
               ) : (
                 <>
-                  <div onClick={() => handleAddToCart(product._id)} className="group inline-flex rounded-xl bg-blue-100 p-2 hover:bg-blue-200">
+                  <button disabled={isDisable} onClick={() => handleAddToCart(product._id)} className="group inline-flex rounded-xl bg-blue-100 p-2 hover:bg-blue-200">
                     <ShoppingBagIcon className="group-hover:text-blue-500 h-4 w-4 text-blue-400" fill="currentColor"/>
-                  </div>
+                  </button>
                   <Link href={`products/${product._id}`} className="group inline-flex rounded-xl bg-blue-100 p-2 hover:bg-blue-200">
                     <EllipsisHorizontalCircleIcon className="group-hover:text-blue-500 h-4 w-4 text-blue-400" fill="currentColor"/>
                   </Link>
@@ -95,6 +106,6 @@ export default function ProductList() {
           </div>
         </article>
       ))}
-    </div>
+    </section>
   )
 }
