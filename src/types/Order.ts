@@ -4,6 +4,7 @@ export type Order = {
   _id?: string,
   resolved: boolean,
   createdAt: string,
+  orderId: string,
   phone: string,
   email: string,
   customer: string,

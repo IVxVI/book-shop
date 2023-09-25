@@ -3,5 +3,5 @@ export type Product = {
   price: string,
   description: string,
   imgUrl: string,
-  _id?: string
+  _id: string
 }

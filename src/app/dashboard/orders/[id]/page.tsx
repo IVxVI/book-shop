@@ -18,6 +18,7 @@ export default function OrderSummary({ params }: any) {
     _id: '',
     resolved: '',
     createdAt: '',
+    orderId: '',
     phone: '',
     email: '',
     customer: '',
@@ -48,7 +49,7 @@ export default function OrderSummary({ params }: any) {
   }
 
   const callout = {
-    id: trimId(orderData._id),
+    id: orderData.orderId,
     name: orderData.customer,
     createdAt: orderData.createdAt,
     products: orderData.products,

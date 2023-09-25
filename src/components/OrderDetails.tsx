@@ -8,7 +8,6 @@ export default function OrderDetails(callout: any) {
         <div className="flex flex-col justify-start items-start dark:bg-gray-800 bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
           <p className="text-lg md:text-xl dark:text-white font-semibold leading-6 xl:leading-5 text-gray-800">Customer’s Cart</p>
           {callout.products.map((product: CartItem) => (
-
             <div key={product.item?._id} className="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full">
               <div className="pb-4 md:pb-8 w-full md:w-40">
                 <img className="w-full hidden md:block" src={product.item?.imgUrl} alt={product.item?.title} />

@@ -1,12 +1,12 @@
 import { FC } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
-import classNames from 'classnames';
 import { Product } from '@/types/Product';
 import { useCartContext } from '@/context/CartContext';
 import { addToCart } from '@/utils/cartActions';
+import Link from 'next/link';
+import classNames from 'classnames';
 
 
-const reviews = { href: '#', average: 4, totalCount: 117 }
 
 type Props = {
   product: Product,
@@ -14,10 +14,12 @@ type Props = {
 
 export const ProductCard: FC<Props> = ({ product }) =>  {
   const { cart, setCart } = useCartContext();
-
+  
   const handleAddToCart = () => {
     addToCart(product, cart, setCart);
   }
+  
+  const reviews = { href: '#', average: 4, totalCount: 117 };
 
   return (
     <div className="bg-white">
@@ -25,9 +27,9 @@ export const ProductCard: FC<Props> = ({ product }) =>  {
         <nav aria-label="Breadcrumb">
           <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
             <li className="text-sm">
-              <a href={product._id} aria-current="page" className="font-medium text-gray-500 hover:text-gray-600">
+              <Link href={product._id} aria-current="page" className="font-medium text-gray-500 hover:text-gray-600">
                 {product.title}
-              </a>
+              </Link>
             </li>
           </ol>
         </nav>
@@ -71,16 +73,16 @@ export const ProductCard: FC<Props> = ({ product }) =>  {
                   ))}
                 </div>
                 <p className="sr-only">{reviews.average} out of 5 stars</p>
-                <a href={reviews.href} className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                <Link href={reviews.href} className="ml-3 text-sm font-medium text-slate-900 hover:text-slate-500">
                   {reviews.totalCount} reviews
-                </a>
+                </Link>
               </div>
             </div>
 
             <button
              onClick={handleAddToCart}
               type="submit"
-              className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-gray-900 hover:bg-gray-600 px-8 py-3 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               Add to bag
             </button>

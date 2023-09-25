@@ -12,6 +12,7 @@ export default function DetailsPage ({ params }: any) {
     price: '',
     description: '',
     imgUrl: '',
+    _id: ''
   })
 
   const { data, status, isLoading, error } = useQuery({

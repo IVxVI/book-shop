@@ -12,6 +12,7 @@ export const EditProductForm = ({ product }: any) => {
     price: '',
     description: '',
     imgUrl: '',
+    _id: ''
   });
 
   const queryClient = useQueryClient()

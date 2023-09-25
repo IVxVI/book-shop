@@ -30,7 +30,7 @@ export default function Orders() {
 
   const callouts = ordersData.map((order: Order) => {
     return {
-      id: trimId(order._id),
+      id: order.orderId,
       name: order.customer,
       createdAt: order.createdAt,
       description: `${order.products.length} product (s), total price: $${order.totalPrice}`,

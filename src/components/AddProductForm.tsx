@@ -31,7 +31,8 @@ export default function AddProductForm() {
         title: '',
         price: '',
         description: '',
-        imgUrl: ''
+        imgUrl: '',
+        _id: ''
       }); 
     }
   })

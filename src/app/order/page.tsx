@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export default function Orders() {
   const { order, setOrder } = useOrderContext();
-  
+
   return (
     <>
       <section className="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
@@ -45,7 +45,8 @@ export default function Orders() {
           </ul>
         </div>
       </section>
-      <Checkout order={order} setOrder={setOrder}/>
+      
+      <Checkout order={order} setOrder={setOrder} />
     </>
   )
 }

@@ -22,13 +22,6 @@ const productSchema = new Schema({
   },
 });
 
-export interface ProductDocument extends Document {
-  title: string;
-  price: string;
-  description: string;
-  imgUrl: string;
-}
-
 const Product = models.Product || mongoose.model("Product", productSchema);
 
 export default Product;

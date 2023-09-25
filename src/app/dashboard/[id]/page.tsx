@@ -2,10 +2,9 @@
 
 import { EditProductForm } from '@/components/EditProductForm';
 import Loader from '@/components/Loader';
-import Product from '@/models/product';
 import { fetchProduct } from '@/utils/axiosApi';
 import { useQuery } from '@tanstack/react-query';
-import { FC, useState } from 'react';
+import { useState } from 'react';
 
 const EditProductPage = ({ params }: any) => {
   const [product, setProduct] = useState({
