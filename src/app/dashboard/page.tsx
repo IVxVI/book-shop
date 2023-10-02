@@ -100,7 +100,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <ProductList products={data}/>
+      <ProductList products={visibleData}/>
     </section>
   )
 }
