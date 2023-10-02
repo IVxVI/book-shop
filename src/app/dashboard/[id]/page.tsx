@@ -1,28 +1,17 @@
 'use client'
 
-import { EditProductForm } from '@/components/EditProductForm';
-import Loader from '@/components/Loader';
-import { fetchProduct } from '@/utils/axiosApi';
+import { EditProductForm } from '@/components/forms/EditProductForm';
+import Loader from '@/components/sections/Loader';
+import { fetchProduct } from '@/utils/productsApi';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
 const EditProductPage = ({ params }: any) => {
-  const [product, setProduct] = useState({
-    title: '',
-    price: '',
-    description: '',
-    imgUrl: '',
-  })
-
-  const { data, status, isLoading, error } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['product'],
     queryFn: () => fetchProduct(params.id as string),
-    onSuccess(data) {
-      if(data) {
-        const productData = data.data;
-        setProduct(productData);
-      }
-    },
+    refetchOnMount: true,
+    cacheTime: 1
   });
   
   if(isLoading) {
@@ -33,9 +22,7 @@ const EditProductPage = ({ params }: any) => {
     return <h1>No data for this product!</h1>
   }
 
-  return (
-      data && <EditProductForm product={product}/>
-    )
+  return <EditProductForm product={data.data}/>
 }
 
 export default EditProductPage;

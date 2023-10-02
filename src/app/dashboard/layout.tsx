@@ -8,7 +8,7 @@ export default function DashboardLayout({
   return (
     <div className="flex-row lg:flex">
       <div
-        className='lg:w-40 flex flex-col lg:h-auto p-3 w-full bg-gray-800 shadow duration-300'
+        className='lg:w-40 flex flex-col p-3 w-full bg-gray-700 shadow duration-300'
       >
         <div className="space-y-3">
           <div className="flex items-center justify-between">

@@ -1,9 +1,9 @@
 'use client'
 
 import { useOrderContext } from '@/context/OrderContext';
-import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import Image from 'next/image';
 
 export const CartView = ({ cart, setCart }) => {
@@ -92,8 +92,8 @@ export const CartView = ({ cart, setCart }) => {
       setOrder(cart);
     }
 
-    setCart([]);
     router.push('/order');
+    setCart([]);
   }
 
   return (
@@ -114,10 +114,10 @@ export const CartView = ({ cart, setCart }) => {
             <div key={cartItem.item?._id} className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
               <div className="flex w-2/5">
                 <div className="w-20">
-                  <Image height={100} width={200} className="h-24" src={cartItem.item?.imgUrl} alt={cartItem.item?.title} />
+                  <Image height={100} width={200} className="h-24" src={cartItem.item.imgUrl} alt={cartItem.item.title} />
                 </div>
                 <div className="flex flex-col justify-between ml-4 flex-grow">
-                  <span className="font-bold text-sm">{cartItem.item?.title}</span>
+                  <span className="font-bold text-sm">{cartItem.item.title}</span>
                   <span className="text-red-500 text-xs">Book</span>
                   <button onClick={() => handleDeleteFromCart(cartItem.item._id)} className="font-semibold hover:text-red-600 text-gray-500 text-xs">Remove</button>
                 </div>
@@ -167,7 +167,12 @@ export const CartView = ({ cart, setCart }) => {
               <span>Total cost</span>
               <span>$ {orderPrice}</span>
             </div>
-            <button onClick={handleProceedCheckout} className="inline-block rounded-md border border-transparent bg-gray-900 px-8 py-3 text-center font-medium text-white hover:bg-gray-500 w-full">Checkout</button>
+            <button 
+              onClick={handleProceedCheckout} 
+              className="inline-block rounded-md border border-transparent bg-gray-900 px-8 py-3 text-center font-medium text-white hover:bg-gray-500 w-full"
+            >
+              Checkout
+            </button>
           </div>
         </div>
       </div>

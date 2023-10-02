@@ -1,11 +1,11 @@
 'use client'
 
 import React, { useState } from 'react'
-import Link from 'next/link';
 import { usePathname } from 'next/navigation'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useSession, signOut } from 'next-auth/react';
+import Link from 'next/link';
 import classNames from 'classnames';
 
 export default function Header() {
@@ -17,6 +17,7 @@ export default function Header() {
     { name: 'Home', href: '/' },
     { name: 'Marketplace', href: '/products' },
     { name: 'About us', href: '/about-us' },
+    { name: 'Contact us', href: '/contact-us' },
     { name: 'Cart', href: '/cart' },
     { name: 'Admin', href: '/dashboard' }
   ]
@@ -101,7 +102,7 @@ export default function Header() {
                     </Link>
                   ) : (
                     <button onClick={() => signOut()} className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                      Logout
+                      Log out
                     </button>
                   )
                 }

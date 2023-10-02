@@ -6,7 +6,7 @@ import { ProductProvider } from "@/context/ProductContext";
 import Provider from "@/context/Provider";
 import ToasterContext from "@/context/ToastContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Header from "./Header";
+import Header from "../components/sections/Header";
 
 export default function ProvidersLayout({
   children,

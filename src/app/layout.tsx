@@ -1,8 +1,9 @@
 import { Inter } from 'next/font/google'
 import classNames from 'classnames'
-import ProvidersLayout from '@/components/ProvidersLayout'
+import ProvidersLayout from '@/context/ProvidersLayout'
 import type { Metadata } from 'next'
 import './globals.css'
+import AsideBg from '@/components/sections/AsideBg'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,6 +23,7 @@ export default function RootLayout({
         <ProvidersLayout>
           {children}  
         </ProvidersLayout>
+        <AsideBg />
       </body>
     </html>
   )

@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react'
-import { placeOrder } from '@/utils/axiosApi';
+import { placeOrder } from '@/utils/ordersApi';
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import generateOrderID from '@/utils/generateRandomId';

@@ -1,7 +1,7 @@
 import { CartItem } from "./CartItem"
 
 export type Order = {
-  _id?: string,
+  _id: string,
   resolved: boolean,
   createdAt: string,
   orderId: string,

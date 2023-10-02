@@ -20,6 +20,26 @@ const productSchema = new Schema({
     type: String,
     required: true
   },
+  
+  author: {
+    type: String,
+    required: true
+  },
+
+  pagesQty: {
+    type: String,
+    required: true
+  },
+
+  language: {
+    type: String,
+    required: true
+  },
+
+  category: {
+    type: String,
+    required: true
+  },
 });
 
 const Product = models.Product || mongoose.model("Product", productSchema);

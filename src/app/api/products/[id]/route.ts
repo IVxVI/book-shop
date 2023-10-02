@@ -12,15 +12,19 @@ export async function GET (request: NextRequest, { params }: any) {
 
 export async function PUT (request: Request, { params }: any) {
   const { id } = params;
-  const productData = await request.json();  
+  const values = await request.json();  
   await connectMongoDB();
 
   try {
     const editedProduct = await Product.findByIdAndUpdate(id, {
-      title: productData.title,
-      price: productData.price,
-      description: productData.description,
-      imgUrl: productData.imgUrl,
+      title: values.title,
+      price: values.price,
+      description: values.description,
+      imgUrl: values.imgUrl,
+      author: values.author, 
+      pagesQty: values.pagesQty, 
+      language: values.language, 
+      category: values.category
     });
 
     return new Response(JSON.stringify(editedProduct), { status: 200 });

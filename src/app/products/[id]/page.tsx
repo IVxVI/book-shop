@@ -1,29 +1,15 @@
 'use client'
-import Loader from '@/components/Loader';
-import { ProductCard } from '@/components/ProductCard'
-import { Product } from '@/types/Product';
-import { fetchProduct } from '@/utils/axiosApi';
+import Loader from '@/components/sections/Loader';
+import { ProductCard } from '@/components/product/XlProductCard'
+import { fetchProduct } from '@/utils/productsApi';
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react'
+import React from 'react'
 
 export default function DetailsPage ({ params }: any) {
-  const [product, setProduct] = useState<Product>({
-    title: '',
-    price: '',
-    description: '',
-    imgUrl: '',
-    _id: ''
-  })
-
-  const { data, status, isLoading, error } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ['product'],
     queryFn: () => fetchProduct(params.id as string),
-    onSuccess(data) {
-      if(data) {
-        const productData = data.data;
-        setProduct(productData);
-      }
-    },
+    refetchOnMount: true
   });
   
   if(isLoading) {
@@ -35,6 +21,6 @@ export default function DetailsPage ({ params }: any) {
   }
   
   return (
-    product && <ProductCard product={product} />
+    <ProductCard product={data.data} />
   )
 }

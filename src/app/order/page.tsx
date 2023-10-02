@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react'
-import { Checkout } from '@/components/Checkout'
+import { Checkout } from '@/components/order/Checkout'
 import { useOrderContext } from '@/context/OrderContext';
 import Link from 'next/link';
 
@@ -10,7 +10,7 @@ export default function Orders() {
 
   return (
     <>
-      <section className="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
+      <section className="flex flex-col items-center border-b py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
         <div className="text-2xl font-bold text-gray-800">
           <span>progress</span>
         </div>

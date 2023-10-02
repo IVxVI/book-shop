@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { useCartContext } from '@/context/CartContext';
-import { CartView } from '@/components/CartView';
+import { CartView } from '@/components/order/CartView';
 import { useOrderContext } from '@/context/OrderContext';
 import Link from 'next/link';
 
@@ -12,7 +12,7 @@ export default function Cart() {
 
   return (
     <>
-      <section className="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
+      <section className=" flex flex-col items-center border-b py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
         <div className="text-2xl font-bold text-gray-800">
           <span>progress</span>
         </div>

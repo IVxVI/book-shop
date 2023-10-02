@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES2015",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/CartView.jsx", "src/components/Checkout.jsx", "src/components/ProductList.jsx", "src/app/(site)/cart/page.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/CartView.jsx", "src/components/order/Checkout.jsx", "src/components/ProductList.jsx", "src/app/(site)/cart/page.tsx"],
   "exclude": ["node_modules"]
 }

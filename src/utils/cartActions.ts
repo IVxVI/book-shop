@@ -1,5 +1,6 @@
 import { CartItem } from "@/types/CartItem";
 import { Product } from "@/types/Product";
+import toast from "react-hot-toast";
 
 export const addToCart = (product: Product, cart: CartItem[], setCart: any) => {
   if (product) {
@@ -21,6 +22,8 @@ export const addToCart = (product: Product, cart: CartItem[], setCart: any) => {
         { item: product, qty: 1 },
       ]);
     }
+
+    toast.success('Successfully added to cart!')
   }
 }
 

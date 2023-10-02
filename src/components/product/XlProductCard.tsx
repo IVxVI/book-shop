@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { Product } from '@/types/Product';
 import { useCartContext } from '@/context/CartContext';
@@ -6,17 +6,24 @@ import { addToCart } from '@/utils/cartActions';
 import Link from 'next/link';
 import classNames from 'classnames';
 
-
-
 type Props = {
   product: Product,
 }
 
 export const ProductCard: FC<Props> = ({ product }) =>  {
   const { cart, setCart } = useCartContext();
-  
+  const [isDisable, setIsDisable] = useState(false);
+
+  const setDisable = () => {
+    setIsDisable(true);
+    setTimeout(() => {
+      setIsDisable(false);
+    }, 2000)
+  }
+
   const handleAddToCart = () => {
     addToCart(product, cart, setCart);
+    setDisable();
   }
   
   const reviews = { href: '#', average: 4, totalCount: 117 };
@@ -80,7 +87,8 @@ export const ProductCard: FC<Props> = ({ product }) =>  {
             </div>
 
             <button
-             onClick={handleAddToCart}
+              disabled={isDisable}
+              onClick={handleAddToCart}
               type="submit"
               className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-gray-900 hover:bg-gray-600 px-8 py-3 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
@@ -101,7 +109,13 @@ export const ProductCard: FC<Props> = ({ product }) =>  {
               <h2 className="text-sm font-medium text-gray-900">Details</h2>
 
               <div className="mt-4 space-y-6">
-                <p className="text-sm text-gray-600">{product.description}</p>
+                <p className="text-sm text-gray-600">Author: {product.author}</p>
+              </div>
+              <div className="mt-4 space-y-6">
+                <p className="text-sm text-gray-600">Number of pages: {product.pagesQty}</p>
+              </div>
+              <div className="mt-4 space-y-6">
+                <p className="text-sm text-gray-600">Language: {product.language}</p>
               </div>
             </div>
           </div>

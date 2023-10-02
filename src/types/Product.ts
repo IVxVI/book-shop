@@ -3,5 +3,9 @@ export type Product = {
   price: string,
   description: string,
   imgUrl: string,
+  author: string,
+  pagesQty: string,
+  language: string,
+  category: string,
   _id: string
 }
