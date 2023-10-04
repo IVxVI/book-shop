@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -12,7 +12,12 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { data: session } = useSession();
   const pathname = usePathname();
-
+  
+  const closeMenu = () => {
+    setTimeout(() => {
+      setMobileMenuOpen(false)
+    }, 300);
+  }
   const navigation = [
     { name: 'Home', href: '/' },
     { name: 'Marketplace', href: '/products' },
@@ -72,7 +77,7 @@ export default function Header() {
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={closeMenu}
             >
               <span className="sr-only">Close menu</span>
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
@@ -83,6 +88,7 @@ export default function Header() {
               <div className="space-y-2 py-6">
                 {navigation.map((item) => (
                   <Link
+                    onClick={closeMenu}
                     key={item.name}
                     href={item.href}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
