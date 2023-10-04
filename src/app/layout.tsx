@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import ProvidersLayout from '@/context/ProvidersLayout'
 import type { Metadata } from 'next'
 import './globals.css'
+// import 
 import AsideBg from '@/components/sections/AsideBg'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -10,6 +11,9 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Book-shop',
   description: 'Book shop for you',
+  icons: {
+    icon: ['/favicon.ico?v=4']
+  }
 }
 
 export default function RootLayout({
