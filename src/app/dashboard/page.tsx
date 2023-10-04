@@ -7,78 +7,69 @@ import { fetchProducts } from '@/utils/productsApi';
 import { useQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import React, { useState, useEffect, Fragment } from 'react'
-import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import React, { useState, useEffect, useRef } from 'react'
 import { Product } from '@/types/Product';
+import ModalWindow from '@/components/sections/ModalWindow';
 
 export default function Dashboard() {
+  const [products, setProducts] = useState([])
+  const [open, setOpen] = useState(false);
+  const [searchParams, setSearchParams] = useState('');
   const session = useSession();
   const router = useRouter();
-  const [searchParams, setSeatchParams] = useState('')
+  const cancelButtonRef = useRef(null);
+  
+  const { isLoading, data } = useQuery(['products'], fetchProducts, {onSuccess(data) {
+    setProducts(data);
+  }});
 
   useEffect(() => {
     if(session.status !== 'authenticated') {
       router.push('/login')
     }
   }, [router, session.status]);
+  
+  
+  const authors = products.map((product: Product) => product.author);
+  
+  const uniqueAuthors = [...new Set(authors)];
 
-  const { isLoading, data } = useQuery(['products'], fetchProducts);
+  const visibleData = products.filter((product: Product) => (
+    product.title.toUpperCase().includes(searchParams.toUpperCase()))
+    || product.description.toUpperCase().includes(searchParams.toUpperCase())
+    || product.author === searchParams
+  )
 
   if(isLoading) {
     return <Loader />
   }
 
-  const authors = data.map((product: Product) => product.author);
-
-  const uniqueAuthors = [...new Set(authors)];
-
-  const visibleData = data.filter((product: Product) => (
-    product.title.toUpperCase().includes(searchParams.toUpperCase()))
-    || product.description.toUpperCase().includes(searchParams.toUpperCase())
-    || product.author === searchParams
-  )
   return (
-    <section>
-      <Menu as="div" className="relative text-left w-full">
-        <div>
-          <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-            Add product
-            <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
-          </Menu.Button>
-        </div>
+    <>
+      <ModalWindow 
+        ref={cancelButtonRef}
+        open={open}
+        setOpen={setOpen}
+      >
+        <AddProductForm />
+      </ModalWindow>
+      <button className='mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto' onClick={() => setOpen(true)}>
+        Add Product
+      </button>
 
-        <Transition
-          as={Fragment}
-          enter="transition ease-out duration-100"
-          enterFrom="transform opacity-0 scale-95"
-          enterTo="transform opacity-100 scale-100"
-          leave="transition ease-in duration-75"
-          leaveFrom="transform opacity-100 scale-100"
-          leaveTo="transform opacity-0 scale-95"
-        >
-          <Menu.Items className="absolute z-10 mt-2 w-full origin-top-right divide-y divide-gray-100 rounded-md bg-white bg-opacity-90 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-            <div className="py-1">
-              <Menu.Item>
-                <AddProductForm />
-              </Menu.Item>
-            </div>
-          </Menu.Items>
-        </Transition>
-      </Menu>
       <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
         <div className="relative mt-2.5">
           <label htmlFor="search-input" className="block text-sm font-semibold leading-6 text-gray-900">
             Search by title or description
           </label>
           <input
-            value={searchParams}
-            onChange={(event) => setSeatchParams(event.target.value)}
-            type="text"
-            name="search-input"
-            id="search-input"
-            className="w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
+          value={searchParams}
+          onChange={(event) => setSearchParams(event.target.value)}
+          type="text"
+          name="search-input"
+          id="search-input"
+          className="w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        />
         </div>
 
         <div className="relative mt-2.5">
@@ -86,7 +77,7 @@ export default function Dashboard() {
             Author
           </label>
           <select
-            onChange={(event) => setSeatchParams(event.target.value)}
+            onChange={(event) => setSearchParams(event.target.value)}
             name="category"
             id="category"
             multiple={false}
@@ -101,6 +92,6 @@ export default function Dashboard() {
       </div>
 
       <ProductList products={visibleData}/>
-    </section>
+    </>
   )
 }

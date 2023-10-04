@@ -42,3 +42,11 @@ export async function POST (request: NextRequest) {
 
   return new Response(JSON.stringify(newOrder), {status: 200});
 }
+
+export async function DELETE (request: NextRequest) {
+  const id = request.nextUrl.searchParams.get('id');
+  await connectMongoDB();
+  const deletedOrder = await Order.findByIdAndDelete(id);
+
+  return new Response(JSON.stringify(deletedOrder), { status: 201 });
+}

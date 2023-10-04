@@ -2,6 +2,10 @@ import { Order } from '@/types/Order'
 import Link from 'next/link'
 import React, { FC } from 'react'
 import DropDown from '../sections/DropDown'
+import { useQueryClient, useMutation } from '@tanstack/react-query'
+import toast from 'react-hot-toast'
+import { deleteOrder } from '@/utils/ordersApi'
+import classNames from 'classnames'
 
 type Props = {
   orders: Order[]
@@ -10,7 +14,16 @@ type Props = {
 export const OrdersList: FC<Props> = ({ orders }) => {
   const tHeads = [
     'Invoice', 'Amount', 'Issued / Due', 'Status'
-  ]
+  ];
+
+  const queryClient = useQueryClient();
+    
+  const {mutate, isLoading} = useMutation(deleteOrder, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['orders']);
+    }
+  });
+
   
   return (
     <div className="container mx-auto px-4 sm:px-8">
@@ -39,8 +52,17 @@ export const OrdersList: FC<Props> = ({ orders }) => {
                 </tr>
               </thead>
               <tbody>
-                {orders.map(order => (
-                  <tr key={order._id}>
+                {orders.map(order => {
+                  const dropDownOptions = [
+                    {title: "Delete", onClick: () => mutate(order._id), href: ''},
+                    {title: "Edit", onClick: () => {}, href: ''},
+                    {title: "Details", onClick: () => {}, href: `/dashboard/orders/${order._id}`}
+                  ];
+
+                return (
+                  <tr key={order._id} className={classNames({
+                    'opacity-70' : isLoading
+                  })}>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       <div className="flex">
                         <div className="ml-3">
@@ -73,10 +95,10 @@ export const OrdersList: FC<Props> = ({ orders }) => {
                     <td
                       className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right"
                     >
-                      <DropDown />
+                      <DropDown options={dropDownOptions} />
                     </td>
                   </tr>
-                ))}
+                )})}
               </tbody>
             </table>
           </div>

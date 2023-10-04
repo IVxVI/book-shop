@@ -28,12 +28,9 @@ export default function XsProductCard({product, handleAddToCart, disabled}: Prop
     }
   });
 
-
   const handleDelete = (productId: string) => {
     mutate(productId);
   }
-
-  
 
   return (
     <article className={classNames(

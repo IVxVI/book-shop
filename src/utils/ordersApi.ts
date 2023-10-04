@@ -34,3 +34,18 @@ export const fetchOrder = async (id: string) => {
     toast.error('Error while loading this order!')
   }
 }
+
+export const deleteOrder = async (id: string) => {
+  try {
+    const response = await productsApi.delete(`/api/orders?id=${id}`);
+
+    if(response.status === 201) {
+      toast.success('Order deleted successfully')
+    }
+
+    return response;
+  } catch (error) {
+    console.error(error);
+    toast.error('Error while deleting order!')
+  }
+}

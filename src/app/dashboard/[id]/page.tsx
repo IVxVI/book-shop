@@ -4,7 +4,6 @@ import { EditProductForm } from '@/components/forms/EditProductForm';
 import Loader from '@/components/sections/Loader';
 import { fetchProduct } from '@/utils/productsApi';
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
 
 const EditProductPage = ({ params }: any) => {
   const { data, isLoading } = useQuery({

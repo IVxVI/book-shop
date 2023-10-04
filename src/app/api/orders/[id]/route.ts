@@ -9,3 +9,4 @@ export async function GET (request: NextRequest, { params }: any) {
 
   return new Response(JSON.stringify(orderData), { status: 200 });
 }
+

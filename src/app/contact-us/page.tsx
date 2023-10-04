@@ -16,7 +16,6 @@ export default function ContactUs() {
     email: '',
     phoneNumber: '',
     message: '',
-
     resolved: false,
     createdAt: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
   };
@@ -39,15 +38,14 @@ export default function ContactUs() {
       </div>
       <Formik
         initialValues={{ 
-            _id: '',
-            firstName: '',
-            lastName: '',
-            email: '',
-            phoneNumber: '',
-            message: '',
-      
-            resolved: false,
-            createdAt: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
+          _id: '',
+          firstName: '',
+          lastName: '',
+          email: '',
+          phoneNumber: '',
+          message: '',
+          resolved: false,
+          createdAt: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
         }}
 
         onSubmit={ async (values, actions) => {

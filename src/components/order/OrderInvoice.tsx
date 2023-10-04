@@ -61,10 +61,10 @@ export const OrderInvoice: FC<Props> = ({ orderData }) => {
               {products.map((product: CartItem) => (
                 <tr key={product.item?._id}>
                   <td className="px-9 py-5 whitespace-nowrap space-x-1 text-center"> ${product.item?.price ? +product.item.price * product.qty : null} </td>
-                  <td className="px-9 py-5 whitespace-nowrap space-x-1 flex items-center">
+                  <td className="px-9 py-5 whitespace-pre-line space-x-1 flex items-center">
                     <div>
-                      <p> {product.item?.title} </p>
-                      <p className="text-xs md:text-sm text-gray-400"> Quantity: {product.qty} </p>
+                      <p className="text-sm text-left max-w-full"> {product.item?.title} </p>
+                      <p className="text-xs md:text-sm text-gray-400 text-left"> Quantity: {product.qty} </p>
                     </div>
                   </td>
                 </tr>
@@ -75,21 +75,21 @@ export const OrderInvoice: FC<Props> = ({ orderData }) => {
             <div className="space-y-3">
               <div className="flex justify-between">
                 <div>
-                  <p className="text-gray-500 text-xs md:text-sm "> Subtotal </p>
+                  <p className="text-gray-500 text-xs md:text-sm"> Subtotal </p>
                 </div>
-                <p className="text-gray-500 text-xs md:text-sm "> ${productsPrice} </p>
+                <p className="text-gray-500 text-xs md:text-sm"> ${productsPrice} </p>
               </div>
               <div className="flex justify-between">
                 <div>
-                  <p className="text-gray-500 text-xs md:text-sm "> Shipping </p>
+                  <p className="text-gray-500 text-xs md:text-sm"> Shipping </p>
                 </div>
-                <p className="text-gray-500 text-xs md:text-sm "> $ {totalPrice - productsPrice} </p>
+                <p className="text-gray-500 text-xs md:text-sm"> $ {totalPrice - productsPrice} </p>
               </div>
               <div className="flex justify-between">
                 <div>
-                  <p className="text-gray-500 text-xs md:text-sm "> Total </p>
+                  <p className="text-gray-500 text-xs md:text-sm"> Total </p>
                 </div>
-                <p className="text-gray-500 text-xs md:text-sm "> ${totalPrice} </p>
+                <p className="text-gray-500 text-xs md:text-sm"> ${totalPrice} </p>
               </div>
             </div>
           </div>

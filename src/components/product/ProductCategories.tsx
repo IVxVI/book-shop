@@ -22,7 +22,7 @@ export default function ProductCategories() {
       description: 'Discover unique and miscellaneous items you won\'t find anywhere else.',
       imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-02-edition-03.jpg',
       imageAlt: 'Assorted miscellaneous items on a display shelf.',
-      href: '/products/other',
+      href: '/products/others',
     },
   ]
 
