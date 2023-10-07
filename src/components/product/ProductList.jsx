@@ -5,7 +5,7 @@ import { useCartContext } from '@/context/CartContext';
 import { addToCart } from '@/utils/cartActions';
 import XsProductCard from './XsProductCard';
 
-export default function ProductList({ products }) {
+function ProductList({ products }) {
   const { cart, setCart } = useCartContext();
   const [isDisable, setIsDisable] = useState(false);
   
@@ -29,7 +29,7 @@ export default function ProductList({ products }) {
   
 
   return (
-    <section className="py-4 mx-auto grid max-w-screen-xl grid-cols-2 gap-12 p-6 md:grid-cols-3 lg:grid-cols-4">
+    <section className="py-4 mx-auto grid max-w-screen-xl gap-12 p-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {products.map(product => (
         <React.Fragment key={product._id}>
           <XsProductCard 
@@ -42,3 +42,5 @@ export default function ProductList({ products }) {
     </section>
   )
 }
+
+export default React.memo(ProductList);

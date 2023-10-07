@@ -30,7 +30,6 @@ export default function AdminForm({initialValues, dataInputs, mutate, isLoading}
         mutate(values);
         setTimeout(() => {
           actions.setSubmitting(false);
-          console.log(values);
           actions.resetForm({values: {
             title: '',
             price: '',
@@ -42,7 +41,6 @@ export default function AdminForm({initialValues, dataInputs, mutate, isLoading}
             category: 'books-comics',
             _id: ''
           }});
-          console.log(values);
           router.push('/dashboard')
         }, 2000);
       }}
@@ -101,7 +99,6 @@ export default function AdminForm({initialValues, dataInputs, mutate, isLoading}
             </div>
         </Form>
       )}
-      
     </Formik>
   )
 }

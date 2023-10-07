@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -16,7 +16,7 @@ export default function Header() {
   const closeMenu = () => {
     setTimeout(() => {
       setMobileMenuOpen(false)
-    }, 300);
+    }, 150);
   }
   const navigation = [
     { name: 'Home', href: '/' },

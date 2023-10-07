@@ -7,9 +7,10 @@ import { fetchProducts } from '@/utils/productsApi';
 import { useQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Product } from '@/types/Product';
 import ModalWindow from '@/components/sections/ModalWindow';
+import {ButtonLight} from '@/components/sections/ButtonLight';
 
 export default function Dashboard() {
   const [products, setProducts] = useState([])
@@ -17,11 +18,12 @@ export default function Dashboard() {
   const [searchParams, setSearchParams] = useState('');
   const session = useSession();
   const router = useRouter();
-  const cancelButtonRef = useRef(null);
-  
-  const { isLoading, data } = useQuery(['products'], fetchProducts, {onSuccess(data) {
-    setProducts(data);
-  }});
+
+  const { isLoading, data } = useQuery(['products'], fetchProducts, {
+    onSuccess(data) {
+      setProducts(data);
+    }
+  });
 
   useEffect(() => {
     if(session.status !== 'authenticated') {
@@ -47,15 +49,12 @@ export default function Dashboard() {
   return (
     <>
       <ModalWindow 
-        ref={cancelButtonRef}
         open={open}
         setOpen={setOpen}
       >
         <AddProductForm />
       </ModalWindow>
-      <button className='mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto' onClick={() => setOpen(true)}>
-        Add Product
-      </button>
+      <ButtonLight onClick={() => setOpen(true)}/>
 
       <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
         <div className="relative mt-2.5">
@@ -63,13 +62,13 @@ export default function Dashboard() {
             Search by title or description
           </label>
           <input
-          value={searchParams}
-          onChange={(event) => setSearchParams(event.target.value)}
-          type="text"
-          name="search-input"
-          id="search-input"
-          className="w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-        />
+            value={searchParams}
+            onChange={(event) => setSearchParams(event.target.value)}
+            type="text"
+            name="search-input"
+            id="search-input"
+            className="w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          />
         </div>
 
         <div className="relative mt-2.5">
