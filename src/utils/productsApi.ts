@@ -25,7 +25,12 @@ export const fetchProduct = async (id: string) => {
 export const addProduct = async (productData: Product) => {
   try {
     const response = await productsApi.post('/api/products', productData);
-    return response;
+    if(response.statusText === 'OK') {
+      toast.success(`Successfully added product ${productData.title}`)
+      return response;
+    } else {
+      toast.error('Error while adding product!')
+    }
   } catch (error) {
     console.error(error);
     toast.error('Error while adding product!')
@@ -35,7 +40,12 @@ export const addProduct = async (productData: Product) => {
 export const editProduct = async (productData: Product) => {
   try {
     const response = await productsApi.put(`/api/products/${productData._id}`, productData);
-    return response;
+    if(response.statusText === 'OK') {
+      toast.success(`Successfully edited product ${productData.title}`)
+      return response;
+    } else {
+      toast.error('Error while editing product!')
+    }
   } catch (error) {
     console.error(error);
     toast.error('Error while editing product!')
@@ -45,7 +55,12 @@ export const editProduct = async (productData: Product) => {
 export const deleteProduct = async (productId: string) => {
   try {
     const response = await productsApi.delete(`/api/products?id=${productId}`);
-    return response;
+    if(response.statusText === 'OK') {
+      toast.success(`Successfully deleted product ${productId}`)
+      return response;
+    } else {
+      toast.error('Error while editing product!')
+    }
   } catch (error) {
     console.error(error);
     toast.error('Error while deleting product!')

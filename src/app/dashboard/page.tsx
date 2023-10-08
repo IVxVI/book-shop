@@ -54,7 +54,7 @@ export default function Dashboard() {
       >
         <AddProductForm />
       </ModalWindow>
-      <ButtonLight onClick={() => setOpen(true)}/>
+      <ButtonLight text="Add product" onClick={() => setOpen(true)}/>
 
       <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
         <div className="relative mt-2.5">
@@ -73,7 +73,7 @@ export default function Dashboard() {
 
         <div className="relative mt-2.5">
           <label htmlFor="category" className="block text-sm font-semibold leading-6 text-gray-900">
-            Author
+            Author / Manufacturer
           </label>
           <select
             onChange={(event) => setSearchParams(event.target.value)}

@@ -5,17 +5,12 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import { shippingOptions } from '@/utils/shippingOptions';
+import { ButtonLight } from '../sections/ButtonLight';
 
 export const CartView = ({ cart, setCart }) => {
   const [totalPrice, setTotalPrice] = useState(0);
-  const [orderPrice, setOrderPrice] = useState(0);
-  
-  const shippingOptions = [
-    {name: 'Nova post', price: 120},
-    {name: 'Ukrpost', price: 100},
-    {name: 'Courier', price: 220},
-  ];
-  
+  const [orderPrice, setOrderPrice] = useState(0);  
   const [shipping, setShipping] = useState(shippingOptions[0]);
   const { order, setOrder } = useOrderContext();
   const router = useRouter()
@@ -115,8 +110,8 @@ export const CartView = ({ cart, setCart }) => {
           {cart.map((cartItem) => (
             <div key={cartItem.item?._id} className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
               <div className="flex w-2/5">
-                <div className="w-20">
-                  <Image height={100} width={200} className="h-24" src={cartItem.item.imgUrl} alt={cartItem.item.title} />
+                <div className="hidden sm:block max-w-[24%]">
+                  <Image height={100} width={100} className="object-contain" src={cartItem.item.imgUrl} alt={cartItem.item.title} />
                 </div>
                 <div className="flex flex-col justify-between ml-4 flex-grow">
                   <span className="font-bold text-sm">{cartItem.item.title}</span>
@@ -125,7 +120,6 @@ export const CartView = ({ cart, setCart }) => {
                 </div>
               </div>
               <div className="flex justify-center w-1/5">
-                
                 <svg onClick={() => handleSubstractQty(cartItem.item._id)} className="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
                   <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/>
                 </svg>
@@ -164,17 +158,16 @@ export const CartView = ({ cart, setCart }) => {
               ))}
             </select>
           </div>
-          <div className="border-t mt-8">
+          <div className="border-t mt-8 flex justify-center flex-col">
             <div className="flex font-semibold justify-between py-6 text-sm uppercase">
               <span>Total cost</span>
-              <span>$ {orderPrice}</span>
+              <span>${orderPrice}</span>
             </div>
-            <button 
-              onClick={handleProceedCheckout} 
-              className="inline-block rounded-md border border-transparent bg-gray-900 px-8 py-3 text-center font-medium text-white hover:bg-gray-500 w-full"
-            >
-              Checkout
-            </button>
+
+            <ButtonLight 
+              text="Checkout"
+              onClick={handleProceedCheckout}
+            />
           </div>
         </div>
       </div>

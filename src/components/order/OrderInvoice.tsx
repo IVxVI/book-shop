@@ -26,12 +26,10 @@ export const OrderInvoice: FC<Props> = ({ orderData }) => {
             <div className="space-y-6">
               <div className="flex justify-between items-top flex-col sm:flex-row">
                 <div className="space flex flex-col">
-                  <div>
-                    <p className="font-medium text-xs md:text-sm  text-gray-400"> Billed To </p>
-                    <p className='text-xs md:text-base'> {customer} </p>
-                    <p className='text-xs md:text-base'> {email} </p>
-                    <p className='text-xs md:text-base'> {phone} </p>
-                  </div>
+                  <p className="font-medium text-xs md:text-sm text-gray-400"> Billed To </p>
+                  <p className='text-xs md:text-base'> {customer} </p>
+                  <p className='text-xs md:text-base'> {email} </p>
+                  <p className='text-xs md:text-base'> {phone} </p>
                 </div>
                 <div className="space-y-2">
                   <div>
@@ -48,7 +46,7 @@ export const OrderInvoice: FC<Props> = ({ orderData }) => {
           </div>
           <div className="p-9 border-b border-gray-200">
             <p className="font-medium text-xs md:text-sm  text-gray-400"> Note </p>
-            <p className="text-xs md:text-sm "> Thank you for your order. Please, save this invoice to track process of your order! </p>
+            <p className="text-xs md:text-sm "> Thank you for your order. Please, save this invoice to track process of your order!</p>
           </div>
           <table className="w-full divide-y divide-gray-200 text-xs md:text-sm ">
             <thead>
