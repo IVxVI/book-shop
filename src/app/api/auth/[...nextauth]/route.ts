@@ -21,7 +21,6 @@ const authOptions: AuthOptions = {
 
     CredentialsProvider({
       name: "credentials",
-      
       credentials: {
         username: { label: "Username", type: "text", placeholder: "Your username" },
         password: { label: "Password", type: "password" },

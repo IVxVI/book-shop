@@ -49,7 +49,7 @@ export default function ContactUs() {
         }}
 
         onSubmit={ async (values, actions) => {
-          await postContactRequst(values)
+          await postContactRequst(values);
           setTimeout(() => {
             actions.setSubmitting(false);
           }, 2000);

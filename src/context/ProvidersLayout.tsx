@@ -19,18 +19,18 @@ export default function ProvidersLayout({
     <Provider>
       <QueryClientProvider client={queryClient}>
         <ToasterContext />
-          <main className="min-h-full">
-            <Header />
-            <article className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-              <ProductProvider>
-                <CartProvider>
-                  <OrderProvider>
-                      {children}
-                  </OrderProvider>
-                </CartProvider>
-              </ProductProvider>
-            </article>
-          </main>
+          <ProductProvider>
+            <CartProvider>
+              <OrderProvider>
+                <main className="min-h-full">
+                  <Header />
+                  <article className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+                    {children}
+                  </article>
+                </main>
+              </OrderProvider>
+            </CartProvider>
+          </ProductProvider>
       </QueryClientProvider>
     </Provider>
   )

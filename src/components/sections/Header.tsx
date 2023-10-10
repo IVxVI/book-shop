@@ -7,11 +7,15 @@ import { Bars3Icon, ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outl
 import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link';
 import classNames from 'classnames';
+import { useCartContext } from '@/context/CartContext'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { cart } = useCartContext();
   const { data: session } = useSession();
   const pathname = usePathname();
+  const cartItems = cart.reduce((prev, current) => current.qty + prev, 0)
+  console.log(cartItems)
   
   const navigation = [
     { name: 'Home', href: '/' },
@@ -51,14 +55,20 @@ export default function Header() {
           })}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-8">
-          <button className="relative border-2 border-transparent text-gray-800 rounded-full hover:text-gray-400 focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out" aria-label="Cart">
-            <ShoppingCartIcon className='text-gray-400 hover:text-gray-700 h-8' />
-            <span className="absolute inset-0 object-right-top -mr-8">
-              <div className="inline-flex items-center px-1.5 py-0.5 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-red-500 text-white">
-                6
-              </div>
-            </span>
-          </button>
+          {
+            !!cartItems && (
+                <Link href="/cart" className='text-gray-700 mr-5'>
+                  <button className="absolute">
+                    <ShoppingCartIcon className='h-6' />
+                    <span className="absolute inset-0 object-right-top -mr-10">
+                      <div className="inline-flex items-center justify-center h-6 w-6 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-slate-600 text-white">
+                        {cartItems}
+                      </div>
+                    </span>
+                  </button>
+                </Link>
+            )
+          }
           
 
           {!session?.user?.name ? (

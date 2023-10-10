@@ -5,7 +5,6 @@ import { ShoppingBagIcon, TrashIcon, PencilIcon, EllipsisHorizontalCircleIcon } 
 import { usePathname } from "next/navigation";
 import { deleteProduct } from '@/utils/productsApi';
 import Link from 'next/link';
-import toast from 'react-hot-toast';
 import classNames from 'classnames';
 import { Product } from '@/types/Product';
 
@@ -21,10 +20,23 @@ export default function XsProductCard({product, handleAddToCart, disabled}: Prop
 
   const queryClient = useQueryClient();
     
-  const {mutate, isLoading} = useMutation(deleteProduct, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(['products']);
-      toast.success('Product deleted successfully')
+  const { mutate, isLoading } = useMutation(deleteProduct, {
+    onMutate: async () => {
+      await queryClient.cancelQueries(['products']);
+
+      const prevProducts = queryClient.getQueryData(['products'])
+
+      queryClient.setQueryData(['products'], (prevProducts || []))
+
+      return { prevProducts }
+    },
+
+    onError: (_, __, context) => {
+      queryClient.setQueryData(['products'], () => context?.prevProducts)
+    },
+
+    onSettled: () => {
+      queryClient.invalidateQueries(['products'])
     }
   });
 
