@@ -64,6 +64,6 @@ If you'd like to request a new function, feel free to do so by opening an issue 
 
 - [Axios](https://axios-http.com/) - Axios is a popular JavaScript library for making HTTP requests. It simplifies the process of sending HTTP requests and handling responses in both browser and Node.js environments.
 
-## [License](https://github.com/iharsh234/WebApp/blob/master/LICENSE.md)
+## [License](https://github.com/IVxVI/book-shop/blob/main/LICENSE)
 
 MIT © [Ivan Vyhinnyi](https://github.com/IVxVI)
