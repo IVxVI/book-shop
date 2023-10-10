@@ -99,14 +99,12 @@ export const Checkout = ({ order, setOrder }) => {
                 totalPrice: orderData.totalPrice
               });
 
+              console.log(response);
+
               if(response.statusText === 'OK') {
-                setTimeout(() => {
-                  setOpen(true)
-                }, 1000)
+                setOpen(true);
           
-                setTimeout(() => {
-                  setOrder([])
-                }, 4000);
+                setOrder([])
               }
             } catch(error) {
               console.log(error)
