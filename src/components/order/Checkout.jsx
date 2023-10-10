@@ -101,7 +101,7 @@ export const Checkout = ({ order, setOrder }) => {
 
               console.log(response);
 
-              if(response.statusText === 'OK') {
+              if(response.status === 200) {
                 setOpen(true);
           
                 setOrder([])
