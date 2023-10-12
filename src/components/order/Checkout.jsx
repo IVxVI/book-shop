@@ -99,8 +99,6 @@ export const Checkout = ({ order, setOrder }) => {
                 totalPrice: orderData.totalPrice
               });
 
-              console.log(response);
-
               if(response.status === 200) {
                 setOpen(true);
           
