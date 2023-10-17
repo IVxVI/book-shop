@@ -4,7 +4,7 @@ This is a Next.js-based book shop project that allows users to browse and purcha
 
 
 ## Demo
-Here is a working live demo :  https://iharsh234.github.io/WebApp/
+Here is a working live demo :  https://book-shop-ivxvi.vercel.app/
 
 
 ## Site
