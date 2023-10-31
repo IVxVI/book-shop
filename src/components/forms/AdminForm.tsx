@@ -73,7 +73,7 @@ export default function AdminForm({initialValues, dataInputs, mutate, status}: P
       {({ handleChange, isSubmitting, isValid }) => {
 
         return (
-        <Form className="mx-auto mt-4 max-w-xl ">
+        <Form className="mx-auto mt-4 max-w-xl">
           <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
             {
               dataInputs.map(input => (
@@ -118,13 +118,13 @@ export default function AdminForm({initialValues, dataInputs, mutate, status}: P
             </div>
             
           </div>
-            <div className="mt-10 grid place-items-center">
-              <FormButton
-                text="Submit"
-                isSubmitting={isSubmitting}
-                isValid={isValid}
-              />
-            </div>
+          <div className="mt-10 grid place-items-center">
+            <FormButton
+              text="Submit"
+              isSubmitting={isSubmitting}
+              isValid={isValid}
+            />
+          </div>
         </Form>
       )}}
     </Formik>

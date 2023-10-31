@@ -4,8 +4,7 @@ import { getData } from '@/utils/getData';
 import React from 'react'
 
 export default async function page() {
-  const params = 'others';
-  const data = await getData(params);
+  const data = await getData();
 
   if(data.props.products.length === 0) {
     return (

@@ -2,8 +2,8 @@
 
 import React from 'react'
 import { useCartContext } from '@/context/CartContext';
-import { CartView } from '@/components/order/CartView';
 import NoProducts from '@/components/sections/NoProducts';
+import { CartView } from '@/components/order/CartView';
 
 export default function Cart() {
   const { cart, setCart } = useCartContext();
@@ -18,6 +18,6 @@ export default function Cart() {
   }
 
   return (
-      <CartView cart={cart} setCart={setCart} />
+    <CartView cart={cart} setCart={setCart} />
   )
 }

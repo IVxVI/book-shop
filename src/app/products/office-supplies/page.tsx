@@ -1,4 +1,4 @@
-import ProductList from '@/components/product/ProductList'
+import ProductList from '@/components/product/ProductList';
 import NoProducts from '@/components/sections/NoProducts';
 import { getData } from '@/utils/getData';
 import React from 'react'

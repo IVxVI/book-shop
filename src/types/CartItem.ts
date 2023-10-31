@@ -1,6 +1,6 @@
 import { Product } from "./Product"
 
 export type CartItem = {
-    item: Product | undefined,
+    item: Product,
     qty: number
 }

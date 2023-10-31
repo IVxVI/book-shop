@@ -46,7 +46,7 @@ export default function XsProductCard({product, handleAddToCart, disabled}: Prop
 
   return (
     <article className={classNames(
-        "rounded-xl bg-white p-2 shadow-lg hover:shadow-xl flex flex-col justify-between max-w-xs",
+        "rounded-xl bg-white p-2 shadow hover:opacity-80 flex flex-col justify-between max-w-xs",
         { "opacity-20" : isLoading}
       )}>
         <section>
@@ -61,7 +61,7 @@ export default function XsProductCard({product, handleAddToCart, disabled}: Prop
           </Link>
 
           <div className="mt-1 flex-grow">
-            <h2 className="text-slate-700">{product.title}</h2>
+            <h2 className="text-slate-700 font-semibold">{product.title}</h2>
             <p className="text-slate-400 mt-1 text-sm truncate">{product.description}</p>
           </div>
         </section>
@@ -82,7 +82,8 @@ export default function XsProductCard({product, handleAddToCart, disabled}: Prop
               </>
             ) : (
               <>
-                <button disabled={disabled} onClick={() => handleAddToCart(product._id)} className="group inline-flex rounded-md bg-blue-100 p-2 hover:bg-blue-200">
+                <button disabled={disabled} onClick={() => handleAddToCart(product._id)} className="group flex items-center justify-between w-1/2 rounded-md bg-blue-100 p-2 hover:bg-blue-200">
+                  <span className='text-blue-400 text-xs uppercase'>Purchase</span>
                   <ShoppingBagIcon className="group-hover:text-blue-500 h-4 w-4 text-blue-400" fill="currentColor"/>
                 </button>
                 <Link href={`/products/${product._id}`} className="group inline-flex rounded-md bg-blue-100 p-2 hover:bg-blue-200">

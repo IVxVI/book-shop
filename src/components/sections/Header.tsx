@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { Dispatch, SetStateAction, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -9,13 +9,16 @@ import Link from 'next/link';
 import classNames from 'classnames';
 import { useCartContext } from '@/context/CartContext'
 
-export default function Header() {
+type Props = {
+  setOpenSidebar: Dispatch<SetStateAction<boolean>> 
+}
+
+export default function Header({ setOpenSidebar }: Props) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { cart } = useCartContext();
   const { data: session } = useSession();
   const pathname = usePathname();
   const cartItems = cart.reduce((prev, current) => current.qty + prev, 0)
-  console.log(cartItems)
   
   const navigation = [
     { name: 'Home', href: '/' },
@@ -57,24 +60,24 @@ export default function Header() {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-8">
           {
             !!cartItems && (
-                <Link href="/cart" className='text-gray-700 mr-5'>
-                  <button className="absolute">
-                    <ShoppingCartIcon className='h-6' />
-                    <span className="absolute inset-0 object-right-top -mr-10">
-                      <div className="inline-flex items-center justify-center h-6 w-6 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-slate-600 text-white">
-                        {cartItems}
-                      </div>
-                    </span>
-                  </button>
-                </Link>
+              <div className='absolute mr-24'>
+                <button onClick={() => setOpenSidebar(true)} className="text-gray-700">
+                  <ShoppingCartIcon className='h-6' />
+                  <span className="absolute inset-0 object-right-top -mr-10">
+                    <div className="inline-flex items-center justify-center h-6 w-6 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-slate-600 text-white">
+                      {cartItems}
+                    </div>
+                  </span>
+                </button>
+              </div>
             )
           }
           
 
           {!session?.user?.name ? (
-            <Link href="/login" className="z-10 text-sm font-semibold leading-6 text-gray-400 hover:text-gray-700">
-              <span aria-hidden="true">&rarr;</span> Log in 
-            </Link>
+              <Link href="/login" className="z-10 text-sm font-semibold leading-6 text-gray-400 hover:text-gray-700">
+                <span aria-hidden="true">&rarr;</span> Log in 
+              </Link>
             ) : (
               <button onClick={() => signOut()} className="z-10 text-sm font-semibold leading-6 text-gray-400 hover:text-gray-700">
                 Logout <span aria-hidden="true">&rarr;</span>
