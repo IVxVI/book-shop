@@ -11,7 +11,17 @@ type CartContextType = {
 
 const defaultCartContext: CartContextType = {
   cart: [{
-    item: undefined,
+    item: {
+      title: "",
+      price: "",
+      description: "",
+      imgUrl: "",
+      author: "",
+      pagesQty: "",
+      language: "",
+      category: "",
+      _id: ""
+    },
     qty: 0
   }],
   setCart: () => {}
