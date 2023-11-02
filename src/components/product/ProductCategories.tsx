@@ -38,8 +38,8 @@ export default function ProductCategories() {
   return (
     <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-2xl py-16 sm:py-24 lg:py-2 lg:max-w-none">
-        <div className="mt-6 lg:grid grid-cols-3 gap-4">
-          <div key={calloutsData[3].name} className="col-span-2 group relative">
+        <div className="mt-6 lg:grid lg:grid-cols-3 lg:gap-8">
+          <div key={calloutsData[3].name} className="py-4 lg:py-0 col-span-2 group relative">
             <div className="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
               <img
                 src={calloutsData[3].imageSrc}
@@ -49,14 +49,14 @@ export default function ProductCategories() {
             </div>
             <h3 className="mt-6 text-sm text-gray-500">
               <Link href={calloutsData[3].href}>
-                <span className="absolute inset-0" />
+                <span className="absolute inset-0"></span>
                 {calloutsData[3].name}
               </Link>
             </h3>
             <p className="text-base font-semibold text-gray-900">{calloutsData[3].description}</p>
           </div>
-          <div key={calloutsData[0].name} className="row-span-2 group relative">
-            <div className="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64 lg:h-[86.6%]">
+          <div key={calloutsData[0].name} className="py-4 lg:py-0 row-span-2 group relative">
+            <div className="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64 lg:h-[86.9%]">
               <img
                 src={calloutsData[0].imageSrc}
                 alt={calloutsData[0].imageAlt}
@@ -64,7 +64,7 @@ export default function ProductCategories() {
               />
             </div>
             <h3 className="mt-6 text-sm text-gray-500">
-              <Link href={calloutsData[3].href}>
+              <Link href={calloutsData[0].href}>
                 <span className="absolute inset-0" />
                 {calloutsData[0].name}
               </Link>
@@ -73,7 +73,7 @@ export default function ProductCategories() {
           </div>
           
           {callouts.map((callout) => (
-            <div key={callout.name} className="group relative">
+            <div key={callout.name} className="py-4 lg:py-0 group relative">
               <div className="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
                 <img
                   src={callout.imageSrc}
@@ -90,7 +90,6 @@ export default function ProductCategories() {
               <p className="text-base font-semibold text-gray-900">{callout.description}</p>
             </div>)
           )}
-            
         </div>
       </div>
     </section>

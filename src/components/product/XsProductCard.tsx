@@ -1,5 +1,4 @@
-
-import React from 'react'
+import React from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ShoppingBagIcon, TrashIcon, PencilIcon, EllipsisHorizontalCircleIcon } from '@heroicons/react/24/solid';
 import { usePathname } from "next/navigation";
@@ -14,7 +13,7 @@ type Props = {
   disabled: boolean
 }
 
-export default function XsProductCard({product, handleAddToCart, disabled}: Props) {
+export default function XsProductCard({ product, handleAddToCart, disabled }: Props) {
   const route = usePathname();
   const adminRoute = route.includes('dashboard');
 
@@ -74,20 +73,20 @@ export default function XsProductCard({product, handleAddToCart, disabled}: Prop
             ? (
               <>
                 <Link href={`/dashboard/${product._id}`} className="group inline-flex rounded-md bg-blue-100 p-2 hover:bg-blue-200">
-                  <PencilIcon className="group-hover:text-blue-500 h-4 w-4 text-blue-400" fill="currentColor"/>
+                  <PencilIcon className="group-hover:text-blue-500 h-4 w-4 text-blue-400" fill="currentColor" />
                 </Link>
                 <button disabled={disabled} onClick={() => handleDelete(product._id)} className="group inline-flex rounded-md bg-blue-100 p-2 hover:bg-blue-200">
-                  <TrashIcon className="group-hover:text-blue-500 h-4 w-4 text-blue-400" fill="currentColor"/>
+                  <TrashIcon className="group-hover:text-blue-500 h-4 w-4 text-blue-400" fill="currentColor" />
                 </button>
               </>
             ) : (
               <>
                 <button disabled={disabled} onClick={() => handleAddToCart(product._id)} className="group flex items-center justify-between w-1/2 rounded-md bg-blue-100 p-2 hover:bg-blue-200">
                   <span className='text-blue-400 text-xs uppercase'>Purchase</span>
-                  <ShoppingBagIcon className="group-hover:text-blue-500 h-4 w-4 text-blue-400" fill="currentColor"/>
+                  <ShoppingBagIcon className="group-hover:text-blue-500 h-4 w-4 text-blue-400" fill="currentColor" />
                 </button>
                 <Link href={`/products/${product._id}`} className="group inline-flex rounded-md bg-blue-100 p-2 hover:bg-blue-200">
-                  <EllipsisHorizontalCircleIcon className="group-hover:text-blue-500 h-4 w-4 text-blue-400" fill="currentColor"/>
+                  <EllipsisHorizontalCircleIcon className="group-hover:text-blue-500 h-4 w-4 text-blue-400" fill="currentColor" />
                 </Link>
               </>
             )}

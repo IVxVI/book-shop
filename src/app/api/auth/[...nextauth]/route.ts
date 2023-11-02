@@ -2,9 +2,9 @@ import NextAuth from "next-auth/next";
 import GoogleProvider from 'next-auth/providers/google';
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
-import bcrypt from 'bcrypt';
 import { AuthOptions } from "next-auth";
 import CredentialsProvider from 'next-auth/providers/credentials';
+import bcrypt from 'bcrypt';
 import type { Adapter } from 'next-auth/adapters';
 
 //random secret code generation: openssl rand -base64 32 in terminal
