@@ -3,7 +3,7 @@ import Loader from '@/components/sections/Loader';
 import { ProductCard } from '@/components/product/XlProductCard'
 import { fetchProduct } from '@/utils/productsApi';
 import { useQuery } from '@tanstack/react-query';
-import React from 'react'
+import React, { Suspense } from 'react'
 
 export default function DetailsPage ({ params }: any) {
   const { data, isLoading, isError } = useQuery({
@@ -21,6 +21,8 @@ export default function DetailsPage ({ params }: any) {
   }
   
   return (
-    <ProductCard product={data.data} />
+    <Suspense fallback={<Loader />}>
+      <ProductCard product={data.data} />
+    </Suspense>
   )
 }

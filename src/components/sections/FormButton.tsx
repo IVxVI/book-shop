@@ -23,7 +23,14 @@ export default function FormButton({text, isSubmitting, data, isValid}: Props) {
         {'bg-gray-600': isSubmitting || noData || !isValid},
         {'bg-gray-900': !noData && isValid && !isSubmitting},
       )}>
-      {isSubmitting ? 'Submitting...' : text}
+      {isSubmitting ? (
+        <div className='flex items-center justify-between'>
+          <svg className="w-5 rounded-full animate-spin border-4 border-solid border-slate-300 border-t-transparent" viewBox="0 0 24 24">/
+          </svg>
+          <p className='text-slate-300'>Processing...</p>
+          <div></div>
+        </div>
+      ) : text}
     </button>
   )
 }

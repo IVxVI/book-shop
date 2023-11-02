@@ -3,7 +3,6 @@ import Link from 'next/link'
 import React, { FC } from 'react'
 import DropDown from '../sections/DropDown'
 import { useQueryClient, useMutation } from '@tanstack/react-query'
-import toast from 'react-hot-toast'
 import { deleteOrder } from '@/utils/ordersApi'
 import classNames from 'classnames'
 
@@ -23,6 +22,10 @@ export const OrdersList: FC<Props> = ({ orders }) => {
       queryClient.invalidateQueries(['orders']);
     }
   });
+
+  if(orders.length === 0) {
+    return <h1>No orders loaded!</h1>
+  }
 
   
   return (

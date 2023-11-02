@@ -1,7 +1,8 @@
 import ProductList from '@/components/product/ProductList'
+import Loader from '@/components/sections/Loader';
 import NoProducts from '@/components/sections/NoProducts';
 import { getData } from '@/utils/getData';
-import React from 'react'
+import React, { Suspense } from 'react'
 
 export default async function page() {
   const params = 'books-comics';
@@ -17,6 +18,8 @@ export default async function page() {
   }
 
   return (
-    <ProductList products={data.props.products}/>
+    <Suspense fallback={<Loader />}>
+      <ProductList products={data.props.products}/>
+    </Suspense>
   )
 }

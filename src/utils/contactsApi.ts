@@ -35,7 +35,6 @@ export const fetchContactRequest = async (id: string) => {
       toast.success('Contact request successfully loaded!')
       return data;
     }
-    return data;
   } catch (error) {
     console.error(error);
     toast.error('Error while loading products!')
