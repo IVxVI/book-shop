@@ -10,6 +10,7 @@ import React, { useState, useEffect, Suspense } from 'react'
 import ModalWindow from '@/components/sections/ModalWindow';
 import { ButtonLight } from '@/components/sections/ButtonLight';
 import ProductList from '@/components/product/ProductList';
+import NoProducts from '@/components/sections/NoProducts';
 
 export default function Dashboard() {
   const [products, setProducts] = useState([])
@@ -31,6 +32,15 @@ export default function Dashboard() {
 
   if(isLoading) {
     return <Loader />
+  }
+
+  if(!data) {
+    return (
+      <NoProducts 
+        header="No data loaded :("
+        article="Sorry, we couldn’t deliver the data you’re looking for at the time. Please, check our possible errors in console"
+      />
+    )
   }
 
   return (

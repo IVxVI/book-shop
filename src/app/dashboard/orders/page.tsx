@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { Suspense } from 'react';
 import Loader from '@/components/sections/Loader';
 import { OrdersList } from '@/components/tables/OrdersList';
+import NoProducts from '@/components/sections/NoProducts';
 
 export default function Orders() {
   const { data, isLoading } = useQuery({
@@ -12,6 +13,15 @@ export default function Orders() {
     queryFn: fetchOrders,
     refetchOnMount: true
   });
+
+  if(!data) {
+    return (
+      <NoProducts 
+        header="No data loaded :("
+        article="Sorry, we couldn’t deliver the data you’re looking for at the time. Please, check our possible errors in console"
+      />
+    )
+  }
 
   return (
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

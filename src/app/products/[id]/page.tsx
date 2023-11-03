@@ -1,4 +1,5 @@
 'use client'
+
 import Loader from '@/components/sections/Loader';
 import { ProductCard } from '@/components/product/XlProductCard'
 import { fetchProduct } from '@/utils/productsApi';

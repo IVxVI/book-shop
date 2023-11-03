@@ -1,6 +1,7 @@
 'use client'
 
 import Loader from "@/components/sections/Loader";
+import NoProducts from "@/components/sections/NoProducts";
 import { ContactsList } from "@/components/tables/ContactsList";
 import { fetchContactRequests } from "@/utils/contactsApi";
 import { useQuery } from "@tanstack/react-query";
@@ -11,7 +12,16 @@ export default function ContactRequests() {
     queryKey: ['contact-requests'],
     queryFn: fetchContactRequests,
   });
-
+  
+  if(!data) {
+    return (
+      <NoProducts 
+        header="No data loaded :("
+        article="Sorry, we couldn’t deliver the data you’re looking for at the time. Please, check our possible errors in console"
+      />
+    )
+  }
+  
   if(isError) {
     return <h1>No data found!</h1>
   }
